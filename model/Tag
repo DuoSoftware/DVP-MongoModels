@@ -4,13 +4,13 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
 
 
 var tagCategorySchema = new Schema({
 
     name: { type: String, required: true},
-    tags: [type: ObjectId, ref: 'Tag'],
-    subcategory: this,
+    tags: [{tag:{type: ObjectId, ref: 'Tag'}}],
     company: { type: Number, required: true },
     tenant: { type: Number, required: true }
 });
@@ -19,6 +19,7 @@ var tagCategorySchema = new Schema({
 var tagSchema = new Schema({
 
     name: { type: String, required: true},
+    tags: {type: ObjectId, ref: 'Tag'},
     description: String
 
 });
@@ -27,7 +28,7 @@ var tagSchema = new Schema({
 
 
 var Tag = mongoose.model('Tag', tagSchema);
-var TagCategory = mongoose.model('Tag', tagCategorySchema);
+var TagCategory = mongoose.model('TagCategory', tagCategorySchema);
 module.exports.Tag = Tag;
 module.exports.TagCategory =TagCategory;
 

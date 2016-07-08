@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var uniqueValidator = require('mongoose-unique-validator');
+
 
 
 var contactSchema = new Schema({
@@ -8,6 +10,7 @@ var contactSchema = new Schema({
     display: String,
     verified: Boolean
 }, {_id: false});
+
 
 
 var externalUserSchema = new Schema({
@@ -24,18 +27,18 @@ var externalUserSchema = new Schema({
         province: String,
         country: String,
     },
-    firstname: String,
-    lastname: String,
+    firstname: { type: String, required: true },
+    lastname: { type: String, required: true },
     locale: String,
-    ssn:  String,
+    ssn:  {type: String, unique: true, spare: true},
     password: String,
-    phoneNumber: contactSchema,
-    email: contactSchema,
-    landnumber: contactSchema,
-    facebook: contactSchema,
-    twitter: contactSchema,
-    linkedin: contactSchema,
-    googleplus: contactSchema,
+    phone: {type: String, unique: true, required: true},
+    email: {type: String, unique: true, spare: true},
+    landnumber: String,
+    facebook: String,
+    twitter: String,
+    linkedin: String,
+    googleplus: String,
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
     contacts: [contactSchema],
@@ -47,7 +50,7 @@ var externalUserSchema = new Schema({
 
 
 
-
+externalUserSchema.plugin(uniqueValidator);
 
 var ExternalUser = mongoose.model('ExternalUser', externalUserSchema);
 module.exports = ExternalUser;
