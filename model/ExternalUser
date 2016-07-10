@@ -30,10 +30,10 @@ var externalUserSchema = new Schema({
     firstname: { type: String, required: true },
     lastname: { type: String, required: true },
     locale: String,
-    ssn:  {type: String, unique: true, spare: true},
+    ssn:  {type: String, unique: true, sparse: true},
     password: String,
     phone: {type: String, unique: true, required: true},
-    email: {type: String, unique: true, spare: true},
+    email: {type: String, unique: true, sparse: true},
     landnumber: String,
     facebook: String,
     twitter: String,
@@ -51,7 +51,7 @@ var externalUserSchema = new Schema({
 
 
 externalUserSchema.plugin(uniqueValidator);
-
+externalUserSchema.index({firstname:"text", lastname:"text", phone:"text", email:"text"});
 var ExternalUser = mongoose.model('ExternalUser', externalUserSchema);
 module.exports = ExternalUser;
 
