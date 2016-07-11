@@ -16,6 +16,7 @@ var ticketSchema = new Schema({
     updated_at: {type:Date,default: Date.now,require:true},
     due_at: Date,
     active: Boolean,
+    is_sub_ticket: {type: Boolean, required: true},
     type: {type: String, enum : ['question','complain','incident','action'], default: 'question', required: true},
     subject: { type: String, required: true, trim: true},
     reference: { type: String, required: true, unique: true},

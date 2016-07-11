@@ -10,13 +10,13 @@ var commentSchema = new Schema({
     public: Boolean,
     author: {type: ObjectId,ref: 'User'},
     author_external: {type: ObjectId,ref: 'ExternalUser'},
-    attachments: [{type: ObjectId,ref: 'User'}],
+    attachments: [{type: ObjectId,ref: 'Attachment'}],
     channel: {type: String, enum: ['call', 'email', 'sms', 'facebook-post', 'facebook-chat', 'twitter','skype', 'api', 'web-widget'],default: 'api'},
     channel_from: {type:String, require: true},
     engagement_session: {type: String, ref: 'EngagementSession'},
     created_at: {type:Date,default: Date.now,require:true},
-    meta_data: {}
-
+    meta_data: {},
+    sub_comment: [{type: ObjectId,ref: 'Comment'}]
 
 });
 
