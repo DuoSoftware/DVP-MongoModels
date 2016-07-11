@@ -22,8 +22,11 @@ var engagementSessionSchema = new Schema({
     channel_from: {type:String, require: true},
     channel_to: {type:String, require: true},
     notes: [noteSchema],
+    has_profile: { type: Boolean, required: true },
     created_at: {type:Date,default: Date.now,require:true},
-    updated_at: {type:Date,default: Date.now,require:true}
+    updated_at: {type:Date,default: Date.now,require:true},
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true }
 
 
 
@@ -39,6 +42,9 @@ var engagementSchema = new Schema({
    engagements: [{type: ObjectId,ref: 'EngagementSession'}]
 
 });
+
+
+
 
 
 
