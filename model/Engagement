@@ -17,6 +17,7 @@ var noteSchema = new Schema({
 
 var engagementSessionSchema = new Schema({
 
+    _id: {type: String, require: true, unique: true},
     engagement_id: {type: String, require: true, unique: true},
     channel: {type: String, enum: ['call', 'email', 'sms', 'facebook-post', 'facebook-chat', 'twitter','skype', 'api', 'web-widget'],default: 'api'},
     channel_from: {type:String, require: true},
@@ -40,7 +41,7 @@ var engagementSchema = new Schema({
    tenant: { type: Number, required: true },
    created_at: {type:Date,default: Date.now,require:true},
    updated_at: {type:Date,default: Date.now,require:true},
-   engagements: [{type: ObjectId,ref: 'EngagementSession'}]
+   engagements: [{type: String,ref: 'EngagementSession'}]
 
 });
 

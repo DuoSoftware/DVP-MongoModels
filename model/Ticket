@@ -34,7 +34,7 @@ var ticketSchema = new Schema({
     sub_tickets: [{type: ObjectId,ref: 'Ticket'}],
     related_tickets: [{type: ObjectId,ref: 'Ticket'}],
     merged_tickets: [{type: ObjectId,ref: 'Ticket'}],
-    engagement_session: {type: ObjectId, ref: 'EngagementSession'},
+    engagement_session: {type: String, ref: 'EngagementSession'},
     channel: {type: String, required: true},
     tags: [String],
     custom_fields: [{field:{type:String, require: true},value:{}}],
