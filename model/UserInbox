@@ -17,8 +17,9 @@ var agentInboxSchema = new Schema({
 var inboxMessageSchema = new Schema({
 
     _id: {type: String, require: true, unique: true},
+    engagement_session: {type: String, ref: 'EngagementSession'},
     message: {type: String},
-    is_read: {type: Boolean, require: true},
+    has_read: {type: Boolean, require: true},
     has_replied: {type: Boolean, require: true},
     message_type: {type: String, required: false},
     message_state: {type: String, require: true},
