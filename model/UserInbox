@@ -1,0 +1,36 @@
+
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
+
+var agentInboxSchema = new Schema({
+
+   profile: {type: ObjectId,ref: 'User',required: true },
+   company: { type: Number, required: true },
+   tenant: { type: Number, required: true },
+   created_at: {type:Date,default: Date.now,require:true},
+   updated_at: {type:Date,default: Date.now,require:true},
+   messages: [{type: String,ref: 'InboxMessage'}]
+
+});
+
+var inboxMessageSchema = new Schema({
+
+    _id: {type: String, require: true, unique: true},
+    message: {type: String},
+    is_read: {type: Boolean, require: true},
+    has_replied: {type: Boolean, require: true},
+    message_type: {type: String, required: false},
+    message_state: {type: String, require: true},
+    created_at: {type:Date,default: Date.now,require:true},
+    updated_at: {type:Date,default: Date.now,require:true},
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true }
+
+});
+
+var InboxMessage = mongoose.model('InboxMessage', inboxMessageSchema);
+module.exports.InboxMessage = InboxMessage;
+
+var AgentInbox = mongoose.model('AgentInbox', agentInboxSchema);
+module.exports.AgentInbox = AgentInbox;
