@@ -52,4 +52,4 @@ ticketSchema.index({subject:"text", description:"text"});
 var TicketEvent = mongoose.model('Event', eventSchema);
 var Ticket = mongoose.model('Ticket', ticketSchema);
 module.exports.Ticket = Ticket;
-module.exports.Event = TicketEvent;
+module.exports.TicketEvent = TicketEvent;
