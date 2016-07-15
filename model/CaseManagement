@@ -1,0 +1,38 @@
+
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
+
+var caseSchema = new Schema({
+
+    created_at: {type:Date,default: Date.now,require:true},
+    updated_at: {type:Date,default: Date.now,require:true},
+    due_at: Date,
+    active: Boolean,
+    status: {type: String, enum : ['new','open','progressing','parked','solved','closed'], default: 'new', required: true},
+    caseName: { type: String, required: true, unique: true},
+    description: { type: String, required: true, trim: true},
+    submitter: {type: ObjectId,ref: 'User'},
+    assignee: {type: ObjectId,ref: 'User'},
+    assignee_group: [{type: ObjectId,ref: 'UserGroup'}],
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true },
+    collaborators: [{type: ObjectId,ref: 'User'}],
+    attachments: [{type: ObjectId,ref: 'Attachment'}],
+    caseConfiguration: [{type: ObjectId,ref: 'CaseConfiguration'}],
+    related_tickets: [{type: ObjectId,ref: 'Ticket'}],
+    sla: [{type: ObjectId,ref: 'SLA'}],
+    comments: [{type: ObjectId,ref: 'Comment'}],
+    events: [Event],
+    SLAViolated: Boolean
+});
+
+
+
+caseSchema.index({caseName:"text", description:"text"});
+
+var Case = mongoose.model('Case', caseSchema);
+module.exports.Case = Case;
+
+
+
