@@ -15,7 +15,7 @@ var slaSchema = new Schema({
     filter: {all: [ticketFilterSchema], any: [ticketFilterSchema]}
     matrix: [ticketMatrixSchema],
     created_at: {type:Date,default: Date.now,require:true},
-    updated_at: {type:Date,default: Date.now,require:true},
+    updated_at: {type:Date,default: Date.now,require:true}
 
 });
 

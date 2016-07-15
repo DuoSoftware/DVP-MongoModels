@@ -29,6 +29,7 @@ var formMasterSchema = new Schema({
 });
 
 formMasterSchema.index({ company: 1, tenant: 1,name: 1}, { unique: true });
+dynamicFieldSchema.index({ company: 1, tenant: 1,field: 1}, { unique: true });
 var FormMaster = mongoose.model('FormMaster', formMasterSchema);
 module.exports.FormMaster = FormMaster;
 
