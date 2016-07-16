@@ -7,7 +7,7 @@ var ObjectId = Schema.ObjectId;
 var inboxMessageSchema = new Schema({
 
     engagement_session: {type: String, ref: 'EngagementSession'},
-    profile: {type: String, ref: 'User'},
+    profile: {type: String, require: true, ref: 'User'},
     message: {type: String},
     has_read: {type: Boolean, require: true},
     has_replied: {type: Boolean, require: true},
