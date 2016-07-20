@@ -1,0 +1,31 @@
+
+
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
+
+
+var socialConnectorSchema = new Schema({
+    _id:String,
+    	fb: {
+    		access_token: String,
+    		firstName: String,
+    		lastName: String,
+    		email: String,
+    		clientID:String,
+    		clientSecret:String,
+    		company : Number,
+    		tenant : Number,
+    		lastUpdate:{type:Date,default: Date.now,require:true}
+    	},
+    	twitter: {
+    		token: String,
+    		username: String,
+    		displayName: String,
+    		lastStatus: String
+    	}
+});
+
+var SocialConnector = mongoose.model('SocialConnector', socialConnectorSchema);
+module.exports.SocialConnector = SocialConnector;
+
