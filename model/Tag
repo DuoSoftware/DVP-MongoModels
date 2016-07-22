@@ -9,8 +9,8 @@ var ObjectId = Schema.ObjectId;
 
 var tagCategorySchema = new Schema({
 
-    name: { type: String, required: true, unique: true},
-    tags: [{tag:{type: ObjectId, ref: 'Tag'}}],
+    name: { type: String, unique: true},
+    tags: [{type: ObjectId, ref: 'Tag'}],
     company: { type: Number, required: true },
     tenant: { type: Number, required: true }
 });
@@ -20,12 +20,17 @@ var tagSchema = new Schema({
 
     name: { type: String, required: true},
     tags: [{type: ObjectId, ref: 'Tag'}],
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true },
     description: String
 
 });
 
 
 
+
+tagCategorySchema.index({ company: 1, tenant: 1,name: 1}, { unique: true });
+tagSchema.index({ company: 1, tenant: 1,name: 1}, { unique: true });
 
 var Tag = mongoose.model('Tag', tagSchema);
 var TagCategory = mongoose.model('TagCategory', tagCategorySchema);
