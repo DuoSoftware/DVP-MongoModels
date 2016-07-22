@@ -11,6 +11,7 @@ var socialConnectorSchema = new Schema({
         tenant: { type: Number, required: true },
     	fb: {
     		access_token: {type: String, required: true},
+    		pageID: {type: String, required: true},
     		firstName: {type: String, required: true},
     		lastName: {type: String, required: true},
     		email: {type: String, required: true},
