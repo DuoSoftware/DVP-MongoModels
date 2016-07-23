@@ -2,29 +2,24 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
-var twitterSchema = new Schema({
+var emailSchema = new Schema({
 
    _id: {type: String, required: true, unique: true},
-   access_token_key: {type: String, required: true},
-   access_token_secret: {type: String, required: true},
    company: { type: Number, required: true },
    tenant: { type: Number, required: true },
+   name: { type: String, required: true },
    ticket_type: {type: String, enum : ['question','complain','incident','action'], default: 'question'},
    ticket_tags: [String],
    ticket_priority: {type: String, enum : ['urgent','high','normal','low'], default: 'normal'},
-   name: {type: String, required: true},
-   screen_name: {type: String, required: true},
    created_at: {type:Date,default: Date.now,require:true},
-   updated_at: {type:Date,default: Date.now,require:true},
-   tweet_since: String,
-   direct_messages_since: String
+   updated_at: {type:Date,default: Date.now,require:true}
 
 
 });
 
 
-
-var Twitter = mongoose.model('Twitter', twitterSchema);
-module.exports.Twitter = Twitter;
+emailSchema.index({ company: 1, tenant: 1,name: 1}, { unique: true });
+var Email = mongoose.model('Email', emailSchema);
+module.exports.Email = Email;
 
 
