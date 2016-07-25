@@ -18,8 +18,8 @@ priority: {type:String, enum: ['urgent','high','normal','low'], require:true},
 criteria:{type:String, enum: ['wait','response','update','resolution'],default:'wait'},
 target: {type:Number, require:true},
 threshold: Number,
-on_fail: [{operations: [{field: { type: String, required: true},  value: {}}]}],
-on_threshold: [{operations: [{field: { type: String, required: true},  value: {}}]}]
+on_fail: [{name: { type: String, required: true}, field: { type: String, required: true},  value: {}}],
+on_threshold: [{name: { type: String, required: true}, field: { type: String, required: true},  value: {}}]
 });
 
 
