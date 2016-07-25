@@ -44,7 +44,7 @@ var externalUserSchema = new Schema({
     tenant: { type: Number, required: true },
     contacts: [contactSchema],
     tags: [String],
-    dynamic_form:[{field:{ type: String, required: true}, value:{ type: String, required: true}, _id: false}],
+    dynamic_form:[{field:{ type: String, required: true}, value:{}, _id: false}],
     custom_fields: {},
     created_at: Date,
     updated_at: Date
