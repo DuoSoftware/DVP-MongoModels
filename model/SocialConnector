@@ -17,7 +17,7 @@ var socialConnectorSchema = new Schema({
     		email: {type: String, required: true},
     		clientID:{type: String, required: true},
     		clientSecret:{type: String, required: true},
-    		lastUpdate:{type:Date,default: Date.now,require:true}
+    		lastUpdate:{ type: Number, required: true }
     	},
     	twitter: {
     		token: String,
