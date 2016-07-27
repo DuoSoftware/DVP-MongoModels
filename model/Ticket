@@ -37,8 +37,8 @@ var ticketSchema = new Schema({
     engagement_session: {type: String, ref: 'EngagementSession'},
     channel: {type: String, required: true},
     tags: [String],
-    custom_fields: [{field:{type:String, require: true},value:{}}],
-    sla: [{type: ObjectId,ref: 'SLA'}],
+    custom_fields: [{field:{type:String, require: true},value:{},_id: false}],
+    sla: {type: ObjectId,ref: 'SLA'},
     comments: [{type: ObjectId,ref: 'Comment'}],
     events: [eventSchema],
     SLAViolated: Boolean
