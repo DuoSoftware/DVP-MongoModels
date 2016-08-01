@@ -20,6 +20,7 @@ var organisationSchema = new Schema({
     tenant: Number,
     packages: [String],
     consoleAccessLimits: [consoleAccessLimitSchema],
+    tenantRef:TenantSchema
     created_at: Date,
     updated_at: Date
 });
