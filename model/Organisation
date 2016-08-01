@@ -14,7 +14,7 @@ var consoleAccessLimitSchema = new Schema({
 
 var organisationSchema = new Schema({
     ownerId:String,
-    companyName: String,
+    companyName: {type: String, require: true, unique: true},
     companyEnabled: Boolean,
     id: Number,
     tenant: Number,
