@@ -8,7 +8,8 @@ var userGroupSchema = new Schema({
     name: { type: String, required: true},
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
-    users: [{type: ObjectId,ref: 'User'}]
+    users: [{type: ObjectId,ref: 'User'}],
+    leads:[{type: ObjectId,ref: 'User'}],
 
 
 });

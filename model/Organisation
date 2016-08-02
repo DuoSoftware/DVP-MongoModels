@@ -5,6 +5,7 @@
 // grab the things we need
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
 
 var consoleAccessLimitSchema = new Schema({
     accessType: String,
@@ -14,16 +15,16 @@ var consoleAccessLimitSchema = new Schema({
 
 var organisationSchema = new Schema({
     ownerId:String,
-    companyName: String,
+    companyName: {type: String, require: true, unique: true},
     companyEnabled: Boolean,
     id: Number,
     tenant: Number,
     packages: [String],
     consoleAccessLimits: [consoleAccessLimitSchema],
+    tenantRef:{type: ObjectId,ref: 'Tenant',  required: true},
     created_at: Date,
     updated_at: Date
 });
 
 var Organisation = mongoose.model('Organisation', organisationSchema);
 module.exports = Organisation;
-

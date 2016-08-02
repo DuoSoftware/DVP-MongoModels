@@ -28,7 +28,27 @@ var formMasterSchema = new Schema({
 
 });
 
+
+var formSubmissionSchema = new Schema({
+
+reference :{type: String, unique: true, require: true},
+company: { type: Number, required: true },
+tenant: { type: Number, required: true },
+form: {type: ObjectId,ref: 'FormMaster',  required: true},
+fields: [{field:{type:String, require: true},value:{}}]
+
+});
+
+
+
+
+
+
 formMasterSchema.index({ company: 1, tenant: 1,name: 1}, { unique: true });
+
+
 var FormMaster = mongoose.model('FormMaster', formMasterSchema);
 module.exports.FormMaster = FormMaster;
 
+var FormSubmission = mongoose.model('FormSubmission', formSubmissionSchema);
+module.exports.FormSubmission = FormSubmission;
