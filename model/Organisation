@@ -5,6 +5,8 @@
 // grab the things we need
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
+var tenantSchema = require('./Tenant').TenantSchema;
 
 var consoleAccessLimitSchema = new Schema({
     accessType: String,
@@ -20,7 +22,7 @@ var organisationSchema = new Schema({
     tenant: Number,
     packages: [String],
     consoleAccessLimits: [consoleAccessLimitSchema],
-    tenantRef:TenantSchema,
+    tenantRef:{type: ObjectId,ref: 'tenantSchema',  required: true},
     created_at: Date,
     updated_at: Date
 });
