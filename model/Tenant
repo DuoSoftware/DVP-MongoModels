@@ -4,8 +4,8 @@ var Schema = mongoose.Schema;
 
 var tenantSchema = new Schema({
 
-    id: Number,
-    rootDomain: {type: String, require: true, unique: true},
+    id: {type: Number, require: true, unique: true},
+    rootDomain: {type: String, require: true},
     created_at: {type:Date,default: Date.now,require:true},
     updated_at: {type:Date,default: Date.now,require:true}
 
@@ -13,5 +13,5 @@ var tenantSchema = new Schema({
 
 });
 
-var TenantSchema = mongoose.model('TenantSchema', tenantSchema);
-module.exports.TenantSchema = TenantSchema;
+var Tenant = mongoose.model('Tenant', tenantSchema);
+module.exports.Tenant = Tenant;
