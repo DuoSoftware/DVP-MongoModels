@@ -6,11 +6,14 @@ var timeEntrySchema = new Schema({
 
     user: {type: ObjectId,ref: 'User', required: true},
     ticket: {type: ObjectId,ref: 'Ticket', required: true},
-    startTime: { type: String, required: true},
-    time_events: [{state: {type:String,enum:['start','stop'],default:'start'}, time:Date}],
-    note: { type: String, required: true},
+    startTime: { type: Date, default: Date.now(), required: true},
+    time_events: [{state: {type:String,enum:['start','pause','stop'],default:'start'}, time:Date, note:String}],
+    last_event_date: {type: Date, require: true},
+    last_event:{type:String,enum:['start','pause','stop'],default:'start'},
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true },
     running: Boolean,
-    time: Number
+    time: { type: Number, required: true}
 
 });
 

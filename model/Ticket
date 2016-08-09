@@ -26,7 +26,7 @@ var ticketSchema = new Schema({
     requester: {type: ObjectId,ref: 'ExternalUser'},
     submitter: {type: ObjectId,ref: 'User'},
     assignee: {type: ObjectId,ref: 'User'},
-    assignee_group: [{type: ObjectId,ref: 'UserGroup'}],
+    assignee_group: {type: ObjectId,ref: 'UserGroup'},
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
     collaborators: [{type: ObjectId,ref: 'User'}],
