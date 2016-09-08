@@ -18,6 +18,7 @@ var statusFlowNodeSchema = new Schema({
 var statusFlowSchema = new Schema({
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
+    type: {type: String, enum : ['question','complain','incident','action'], required: true},
     flow_nodes: [statusFlowNodeSchema]
 });
 
