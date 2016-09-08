@@ -1,0 +1,15 @@
+
+
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
+
+var statusFlowSchema = new Schema({
+    source: {type: String, enum : ['new','open','progressing','parked','solved','closed'], required: true},
+    targets: [statusFlowSchema]
+});
+
+
+
+var TicketStatusFlow = mongoose.model('TicketStatusFlow', statusFlowSchema);
+module.exports.TicketStatusFlow = TicketStatusFlow;
