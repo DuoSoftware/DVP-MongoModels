@@ -4,12 +4,24 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
-var statusFlowSchema = new Schema({
-    source: {type: String, enum : ['new','open','progressing','parked','solved','closed'], required: true},
-    targets: [statusFlowSchema]
+var statusNodeSchema = new Schema({
+    status_node: {type: String, enum : ['new','open','progressing','parked','solved','closed'], required: true, unique: true}
 });
 
 
 
+var statusFlowNodeSchema = new Schema({
+    source: {type: ObjectId,ref: 'TicketStatusNode'},
+    targets: {type: ObjectId,ref: 'TicketStatusNode'}
+});
+
+var statusFlowSchema = new Schema({
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true },
+    flow_nodes: [statusFlowNodeSchema]
+});
+
+var TicketStatusNode = mongoose.model('TicketStatusNode', statusNodeSchema);
 var TicketStatusFlow = mongoose.model('TicketStatusFlow', statusFlowSchema);
 module.exports.TicketStatusFlow = TicketStatusFlow;
+module.exports.TicketStatusNode = TicketStatusNode;
