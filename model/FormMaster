@@ -6,7 +6,7 @@ var ObjectId = Schema.ObjectId;
 var dynamicFieldSchema = new Schema({
 
     field: { type: String, required: true},
-    type: { type: String, enum: ['text','radio','date','number','boolean','selection'],required: true },
+    type: { type: String, enum: ['text','radio','date','number','boolean','select','multiple','checkbox','checkboxes','textarea','url','phone','email','header'],required: true },
     description: String,
     title: { type: String, required: true},
     active: Boolean,
