@@ -4,6 +4,7 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
 
 
 var contactSchema = new Schema({
@@ -80,7 +81,7 @@ var userSchema = new Schema({
     app_meta: {},
     user_scopes: [scopeSchema],
     client_scopes: [consoleScopeSchema],
-    group:{type: ObjectId,ref: 'UserGroup'}
+    group:{type: ObjectId,ref: 'UserGroup'},
     created_at: Date,
     updated_at: Date
 });

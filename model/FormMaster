@@ -13,8 +13,6 @@ var dynamicFieldSchema = new Schema({
     require: Boolean,
     values: [{id:{ type: Number, required: true}, name:{ type: String, required: true}}]
 
-
-
 });
 
 
