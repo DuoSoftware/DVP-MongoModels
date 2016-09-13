@@ -10,6 +10,7 @@ var inboxMessageSchema = new Schema({
     profile: {type: String, require: true, ref: 'User'},
     heading: {type: String},
     message: {type: String},
+    from: {type: String},
     has_read: {type: Boolean, require: true},
     has_replied: {type: Boolean, require: true},
     message_type: {type: String, required: false},
