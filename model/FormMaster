@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
-
 var dynamicFieldSchema = new Schema({
 
     field: { type: String, required: true},
@@ -23,22 +22,30 @@ var formMasterSchema = new Schema({
     tenant: { type: Number, required: true },
     fields: [dynamicFieldSchema]
 
-
 });
 
 
 var formSubmissionSchema = new Schema({
 
-reference :{type: String, unique: true, require: true},
-company: { type: Number, required: true },
-tenant: { type: Number, required: true },
-form: {type: ObjectId,ref: 'FormMaster',  required: true},
-fields: [{field:{type:String, require: true},value:{}}]
+    reference :{type: String, unique: true, require: true},
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true },
+    form: {type: ObjectId,ref: 'FormMaster',  required: true},
+    fields: [{field:{type:String, require: true},value:{}}]
 
 });
 
 
 
+
+var formProfileSchema = new Schema({
+
+    ticket_form: {type: ObjectId,ref: 'FormMaster',  required:
+    profile_form: {type: ObjectId,ref: 'FormMaster',  required: true},
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true }
+
+});
 
 
 
@@ -50,3 +57,11 @@ module.exports.FormMaster = FormMaster;
 
 var FormSubmission = mongoose.model('FormSubmission', formSubmissionSchema);
 module.exports.FormSubmission = FormSubmission;
+
+
+var FormProfile= mongoose.model('FormProfile', formProfileSchema);
+module.exports.FormProfile = FormProfile;
+
+
+
+formProfileSchema.index({ company: 1, tenant: 1}, { unique: true });

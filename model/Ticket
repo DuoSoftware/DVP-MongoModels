@@ -38,6 +38,7 @@ var ticketSchema = new Schema({
     channel: {type: String, required: true},
     tags: [String],
     custom_fields: [{field:{type:String, require: true},value:{},_id: false}],
+    form_submission: {type: ObjectId,ref: 'FormSubmission'},
     sla: {type: ObjectId,ref: 'SLA'},
     comments: [{type: ObjectId,ref: 'Comment'}],
     events: [eventSchema],
