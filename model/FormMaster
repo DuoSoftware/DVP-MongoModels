@@ -40,8 +40,8 @@ var formSubmissionSchema = new Schema({
 
 var formProfileSchema = new Schema({
 
-    ticket_form: {type: ObjectId,ref: 'FormMaster',  required:
-    profile_form: {type: ObjectId,ref: 'FormMaster',  required: true},
+    ticket_form: {type: ObjectId,ref: 'FormMaster'},
+    profile_form: {type: ObjectId,ref: 'FormMaster'},
     company: { type: Number, required: true },
     tenant: { type: Number, required: true }
 
