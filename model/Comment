@@ -7,7 +7,7 @@ var commentSchema = new Schema({
     body: { type: String, required: true},
     body_type: { type: String, enum: ['html','text'], default:'text',required: true},
     type: { type: String, required: true},
-    public: Boolean,
+    public: { type: String, enum: ['public','private','internal'], default:'text',required: true},
     author: {type: ObjectId,ref: 'User'},
     author_external: {type: ObjectId,ref: 'ExternalUser'},
     attachments: [{type: ObjectId,ref: 'Attachment'}],
