@@ -26,6 +26,7 @@ var engagementSessionSchema = new Schema({
     body: String,
     direction: String,
     has_profile: { type: Boolean, required: true },
+    profile_id: String,
     created_at: {type:Date,default: Date.now,require:true},
     updated_at: {type:Date,default: Date.now,require:true},
     company: { type: Number, required: true },
