@@ -6,7 +6,9 @@ var ObjectId = Schema.ObjectId;
 var ticketStaticsSchema = require('./TicketMetrix').ticketStaticsSchema;
 
 var eventSchema = new Schema({
-    type: {type: String, enum : ['comment','status','notification','reassign'], default: 'comment', required: true},
+    author: String,
+    create_at: Date,
+    type: {type: String, enum : ['comment','status','notification','reassign', 'tracker'], default: 'comment', required: true},
     body: {}
 });
 
@@ -15,6 +17,7 @@ var ticketSchema = new Schema({
     created_at: {type:Date,default: Date.now,require:true},
     updated_at: {type:Date,default: Date.now,require:true},
     due_at: Date,
+    time_estimation: Number,
     active: Boolean,
     tid: {type: Number, required: true},
     is_sub_ticket: {type: Boolean, required: true},
@@ -31,6 +34,7 @@ var ticketSchema = new Schema({
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
     collaborators: [{type: ObjectId,ref: 'User'}],
+    watchers: [{type: ObjectId,ref: 'User'}],
     attachments: [{type: ObjectId,ref: 'Attachment'}],
     sub_tickets: [{type: ObjectId,ref: 'Ticket'}],
     related_tickets: [{type: ObjectId,ref: 'Ticket'}],
