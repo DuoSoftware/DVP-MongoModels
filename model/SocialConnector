@@ -12,6 +12,7 @@ var socialConnectorSchema = new Schema({
     	fb: {
     		access_token: {type: String, required: true},
     		pageID: {type: String, required: true},
+    		pagePicture: {type: String, required: false},
     		firstName: {type: String, required: true},
     		lastName: {type: String, required: true},
     		email: {type: String, required: true},
