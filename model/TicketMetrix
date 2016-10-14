@@ -4,21 +4,22 @@ var ObjectId = Schema.ObjectId;
 
 var ticketStaticsSchema = new Schema({
 
-
-    ticket: {type: ObjectId,ref: 'Ticket', required: true},
     groups: Number,
     assignees: Number,
     reopens: Number,
     replies: Number,
+    external_replies: Number,
     last_assigned: Date,
     last_updated: Date,
     last_status_changed: Date,
     last_commented: Date,
     created_at: Date,
+    opened_at: Date,
     solved_at: Date,
     waited_time: Number,
     worked_time: Number,
     resolution_time: Number,
+    sla_violated: Boolean
 
 });
 
@@ -26,5 +27,6 @@ var ticketStaticsSchema = new Schema({
 
 var TicketStatics = mongoose.model('TicketStatics', ticketStaticsSchema);
 module.exports.TicketStatics = TicketStatics;
+module.exports.ticketStaticsSchema = ticketStaticsSchema;
 
 
