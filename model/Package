@@ -29,3 +29,5 @@ var packageSchema = new Schema({
 
 var Package = mongoose.model('Package', packageSchema);
 module.exports = Package;
+module.exports.consoleAccessLimitSchema = consoleAccessLimitSchema;
+module.exports.resourceSchema = resourceSchema;

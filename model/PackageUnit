@@ -1,0 +1,14 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var consoleAccessLimitSchema = require('./Package').consoleAccessLimitSchema;
+var resourceSchema = require('./Package').resourceSchema;
+
+var packageUnitSchema = new Schema({
+    unitName: { type: String, required: true, unique: true },
+    consoleAccessLimit: consoleAccessLimitSchema,
+    resources: [resourceSchema],
+    unitprice: String
+});
+
+var PackageUnit = mongoose.model('PackageUnit', packageUnitSchema);
+module.exports = PackageUnit;
