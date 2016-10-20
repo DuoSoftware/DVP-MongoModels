@@ -18,6 +18,7 @@ var twitterSchema = new Schema({
    updated_at: {type:Date,default: Date.now,require:true},
    tweet_since: String,
    direct_messages_since: String,
+   avatar: String,
    status:{type: Boolean, required: true}
 
 });
