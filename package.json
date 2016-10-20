@@ -1,6 +1,6 @@
 {
   "name": "dvp-mongomodels",
-  "version": "2.1.0",
+  "version": "3.6.0",
   "description": "mongodb models",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/DuoSoftware/DVP-MogoModels#readme",
   "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "mongoose": "^4.6.4",
     "mongoose-text-search": "0.0.2"
   }
 }

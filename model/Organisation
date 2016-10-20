@@ -13,6 +13,11 @@ var consoleAccessLimitSchema = new Schema({
     currentAccess: [String]
 });
 
+var resourceAccessLimitSchema = new Schema({
+    scopeName: String,
+    accessLimit: Number
+});
+
 var organisationSchema = new Schema({
     ownerId:String,
     companyName: {type: String, require: true, unique: true},
@@ -21,6 +26,7 @@ var organisationSchema = new Schema({
     tenant: Number,
     packages: [String],
     consoleAccessLimits: [consoleAccessLimitSchema],
+    resourceAccessLimits: [resourceAccessLimitSchema],
     tenantRef:{type: ObjectId,ref: 'Tenant',  required: true},
     created_at: Date,
     updated_at: Date
