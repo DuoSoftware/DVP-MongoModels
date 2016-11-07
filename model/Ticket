@@ -12,6 +12,16 @@ var eventSchema = new Schema({
     body: {}
 });
 
+var fileSlotSchema = new Schema({
+ company: { type: Number, required: true },
+ tenant: { type: Number, required: true },
+ name: { type: String, required: true },
+ tags: [String],
+ fileType: {type: String, enum : ['image','video','audio','document'], default: 'image', required: true}
+});
+
+
+
 var ticketSchema = new Schema({
 
     created_at: {type:Date,default: Date.now,require:true},
@@ -36,13 +46,14 @@ var ticketSchema = new Schema({
     collaborators: [{type: ObjectId,ref: 'User'}],
     watchers: [{type: ObjectId,ref: 'User'}],
     attachments: [{type: ObjectId,ref: 'Attachment'}],
+    slot_attachment : [{slot: {name: { type: String, required: true },fileType: {type: String, required: true}}, attachment: {type: ObjectId,ref: 'Attachment'}}],
     sub_tickets: [{type: ObjectId,ref: 'Ticket'}],
     related_tickets: [{type: ObjectId,ref: 'Ticket'}],
     merged_tickets: [{type: ObjectId,ref: 'Ticket'}],
     engagement_session: {type: String, ref: 'EngagementSession'},
     channel: {type: String, required: true},
     tags: [String],
-    isolated_tags: [],
+    isolated_tags: [String],
     custom_fields: [{field:{type:String, require: true},value:{},_id: false}],
     form_submission: {type: ObjectId,ref: 'FormSubmission'},
     sla: {type: ObjectId,ref: 'SLA'},
@@ -58,5 +69,11 @@ ticketSchema.index({subject:"text", description:"text"});
 
 var TicketEvent = mongoose.model('Event', eventSchema);
 var Ticket = mongoose.model('Ticket', ticketSchema);
+var FileSlot = mongoose.model('FileSlot', fileSlotSchema);
+
+fileSlotSchema.index({ company: 1, tenant: 1, name: 1}, { unique: true });
+
+
 module.exports.Ticket = Ticket;
 module.exports.TicketEvent = TicketEvent;
+module.exports.FileSlot = FileSlot;
