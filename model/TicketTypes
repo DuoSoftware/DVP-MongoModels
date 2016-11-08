@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var ticketTypeSchema = new Schema({
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
-    default_types: [{type: String, default : ['question','complain','incident','action']}],
+    default_types: [String],
     custom_types: [String]
 });
 
