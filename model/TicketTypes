@@ -8,6 +8,7 @@ var ticketTypeSchema = new Schema({
     custom_types: [String]
 });
 
+ticketTypeSchema.index({ company: 1, tenant: 1}, { unique: true });
 
 var TicketTypes = mongoose.model('TicketTypes', ticketTypeSchema);
 module.exports.TicketTypes = TicketTypes;
