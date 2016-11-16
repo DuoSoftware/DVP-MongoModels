@@ -26,7 +26,7 @@ var ticketSchema = new Schema({
     reference: { type: String, required: true, unique: true},
     description: { type: String, required: true, trim: true},
     priority: {type: String, enum : ['urgent','high','normal','low'], default: 'normal', required: true},
-    status: {type: String, enum : ['new','open','progressing','parked','solved','closed'], default: 'new', required: true},
+    status: {type: String, default: 'new', required: true},
     requester: {type: ObjectId,ref: 'ExternalUser'},
     submitter: {type: ObjectId,ref: 'User'},
     assignee: {type: ObjectId,ref: 'User'},
