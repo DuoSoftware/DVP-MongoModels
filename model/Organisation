@@ -18,6 +18,17 @@ var resourceAccessLimitSchema = new Schema({
     accessLimit: Number
 });
 
+var packageDetailSchema = new Schema({
+    veeryPackage: {type: ObjectId,ref: 'Package'},
+    buyDate: Date
+});
+
+var unitDetailSchema = new Schema({
+    veeryUnit: {type: ObjectId,ref: 'PackageUnit'},
+    units: Number,
+    buyDate: Date
+});
+
 var organisationSchema = new Schema({
     ownerId:String,
     companyName: {type: String, require: true, unique: true},
@@ -25,6 +36,8 @@ var organisationSchema = new Schema({
     id: Number,
     tenant: Number,
     packages: [String],
+    packageDetails: [packageDetailSchema],
+    unitDetails: [unitDetailSchema],
     consoleAccessLimits: [consoleAccessLimitSchema],
     resourceAccessLimits: [resourceAccessLimitSchema],
     tenantRef:{type: ObjectId,ref: 'Tenant',  required: true},
