@@ -5,9 +5,11 @@ var resourceSchema = require('./Package').resourceSchema;
 
 var packageUnitSchema = new Schema({
     unitName: { type: String, required: true, unique: true },
+    unitType: String,
+    description: String,
     consoleAccessLimit: consoleAccessLimitSchema,
     resources: [resourceSchema],
-    unitprice: String
+    unitprice: Number
 });
 
 var PackageUnit = mongoose.model('PackageUnit', packageUnitSchema);
