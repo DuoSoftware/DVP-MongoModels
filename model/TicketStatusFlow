@@ -8,6 +8,7 @@ var statusNodeSchema = new Schema({
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
     status_node: {type: String, required: true},
+    name: {type: String, required: true},
     description: { type: String, trim: true},
     node_type: {type: String, enum : ['system','custom'], default: 'system', required: true}
 });
@@ -17,6 +18,11 @@ statusNodeSchema.index({ company: 1, tenant: 1, status_node: 1}, { unique: true 
 
 
 var statusFlowNodeSchema = new Schema({
+    node: {type: ObjectId,ref: 'TicketStatusNode'},
+    position: [Number]
+});
+
+var statusFlowConnectionSchema = new Schema({
     source: {type: ObjectId,ref: 'TicketStatusNode'},
     targets: {type: ObjectId,ref: 'TicketStatusNode'}
 });
@@ -25,7 +31,8 @@ var statusFlowSchema = new Schema({
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
     type: {type: String, required: true},
-    flow_nodes: [statusFlowNodeSchema]
+    flow_nodes: [statusFlowNodeSchema],
+    flow_connections: [statusFlowConnectionSchema]
 });
 
 var TicketStatusNode = mongoose.model('TicketStatusNode', statusNodeSchema);
