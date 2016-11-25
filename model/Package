@@ -21,6 +21,7 @@ var resourceSchema = new Schema({
 var packageSchema = new Schema({
     packageName: { type: String, required: true, unique: true },
     packageType: String,
+    navigationType: { type: String, required: true },
     description: String,
     consoleAccessLimit: [consoleAccessLimitSchema],
     resources: [resourceSchema],

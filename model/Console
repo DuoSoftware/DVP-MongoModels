@@ -15,6 +15,7 @@ var resourceSchema = new Schema({
 
 var navigationSchema = new Schema({
     navigationName: String,
+    navigationTypes: [String],
     navigationStatus: Boolean,
     resources: [resourceSchema],
     created_at: Date,
