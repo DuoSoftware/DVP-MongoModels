@@ -41,6 +41,7 @@ var organisationSchema = new Schema({
     consoleAccessLimits: [consoleAccessLimitSchema],
     resourceAccessLimits: [resourceAccessLimitSchema],
     tenantRef:{type: ObjectId,ref: 'Tenant',  required: true},
+    ownerRef:{type: ObjectId,ref: 'User'},
     created_at: Date,
     updated_at: Date
 });
