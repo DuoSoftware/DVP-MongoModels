@@ -1,0 +1,17 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var reportEmailSchema = new Schema({
+
+    reportType: {type: String, require: true},
+    users: [{type: String, ref: 'User'}],
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true }
+
+});
+
+
+var ReportEmailConfig = mongoose.model('ReportEmailConfig', reportEmailSchema);
+module.exports.ReportEmailConfig = ReportEmailConfig;
+var User = mongoose.model('User', userSchema);
+module.exports = User;
