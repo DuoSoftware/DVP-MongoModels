@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var reportEmailSchema = new Schema({
 
     reportType: {type: String, require: true},
-    users: [{type: String, ref: 'User'}],
+    users: [{type: ObjectId, ref: 'User'}],
     company: { type: Number, required: true },
     tenant: { type: Number, required: true }
 
