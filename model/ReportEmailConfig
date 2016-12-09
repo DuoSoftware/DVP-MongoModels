@@ -13,5 +13,3 @@ var reportEmailSchema = new Schema({
 
 var ReportEmailConfig = mongoose.model('ReportEmailConfig', reportEmailSchema);
 module.exports.ReportEmailConfig = ReportEmailConfig;
-var User = mongoose.model('User', userSchema);
-module.exports = User;
