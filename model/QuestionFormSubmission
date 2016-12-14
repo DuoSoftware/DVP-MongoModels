@@ -1,0 +1,26 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
+require('./Question');
+require('./QuestionSection');
+require('./QuestionForm');
+require('./User');
+require('./EngagementSession');
+
+var questionFormSubmissionSchema = new Schema({
+
+    question: {type: ObjectId, ref: 'Question'},
+    section: {type: ObjectId, ref: 'QuestionSection'},
+    form: {type: ObjectId, ref: 'QuestionForm'},
+    user: {type: ObjectId, ref: 'User'},
+    callSession: {type: ObjectId, ref: 'EngagementSession'},
+    points: { type: Number, required: true },
+    answer: {type: String, required: true},
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true }
+
+});
+
+
+var QuestionFormSubmission = mongoose.model('QuestionFormSubmission', questionFormSubmissionSchema);
+module.exports.QuestionFormSubmission = QuestionFormSubmission;
