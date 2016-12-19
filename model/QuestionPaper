@@ -28,6 +28,7 @@ var questionSchema = new Schema({
 var questionAnswerSchema = new Schema({
 
     question: {type: ObjectId, ref: 'Question',required: true},
+    section: {type: ObjectId, ref: 'QuestionSection',required: true},
     points: {type: Number, required: true },
     remarks: String,
     company: { type: Number, required: true },
@@ -38,7 +39,10 @@ var questionAnswerSchema = new Schema({
 
 var questionPaperSchema = new Schema({
 
+    created_at: {type:Date,default: Date.now,require:true},
+    updated_at: {type:Date,default: Date.now,require:true},
     name: {type: String, required: true},
+    active: {type: String, required: true, default: true},
     questions: [{type: ObjectId, ref: 'Question'}],
     company: { type: Number, required: true },
     tenant: { type: Number, required: true }
@@ -48,6 +52,9 @@ var questionPaperSchema = new Schema({
 
 var questionPaperSubmissionSchema = new Schema({
 
+    created_at: {type:Date,default: Date.now,require:true},
+    updated_at: {type:Date,default: Date.now,require:true},
+    completed: {type: String, required: true, default: false},
     paper: {type: ObjectId, ref: 'QuestionPaper', required: true},
     session: {type: ObjectId, ref: 'EngagementSession'},
     evaluator: {type: ObjectId, ref: 'User', required: true},
@@ -59,10 +66,11 @@ var questionPaperSubmissionSchema = new Schema({
 });
 
 
-var QuestionPaper = mongoose.model('QuestionPaper', questionPaperSchema);
-var QuestionSection = mongoose.model('QuestionSection', questionSectionSchema);
-var Question = mongoose.model('QuestionSection', questionSchema);
-var QuestionAnswer = mongoose.model('QuestionAnswer', questionAnswerSchema);
-var QuestionPaperSubmission = mongoose.model('QuestionAnswer', questionPaperSubmissionSchema);
+module.exports.QuestionPaper = mongoose.model('QuestionPaper', questionPaperSchema);
+module.exports.QuestionSection = mongoose.model('QuestionSection', questionSectionSchema);
+module.exports.Question = mongoose.model('Question', questionSchema);
+module.exports.QuestionAnswer = mongoose.model('QuestionAnswer', questionAnswerSchema);
+module.exports.QuestionPaperSubmission = mongoose.model('QuestionPaperSubmission', questionPaperSubmissionSchema);
+
 
 
