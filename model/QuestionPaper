@@ -63,6 +63,6 @@ var QuestionPaper = mongoose.model('QuestionPaper', questionPaperSchema);
 var QuestionSection = mongoose.model('QuestionSection', questionSectionSchema);
 var Question = mongoose.model('Question', questionSchema);
 var QuestionAnswer = mongoose.model('QuestionAnswer', questionAnswerSchema);
-var QuestionPaperSubmission = mongoose.model('QuestionAnswer', questionPaperSubmissionSchema);
+var QuestionPaperSubmission = mongoose.model('QuestionPaperSubmission', questionPaperSubmissionSchema);
 
 
