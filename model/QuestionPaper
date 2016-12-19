@@ -1,0 +1,68 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
+
+
+
+var questionSectionSchema = new Schema({
+
+    name: {type: String, required: true},
+    description: String,
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true }
+});
+
+
+var questionSchema = new Schema({
+
+    question: {type: String, required: true},
+    section: {type: ObjectId, ref: 'QuestionSection',required: true},
+    weight: {type: Number, required: true},
+    type: { type: String, enum: ['binary','rating','remark'], required: true },
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true }
+
+});
+
+
+var questionAnswerSchema = new Schema({
+
+    question: {type: ObjectId, ref: 'Question',required: true},
+    points: {type: Number, required: true },
+    remarks: String,
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true }
+
+});
+
+
+var questionPaperSchema = new Schema({
+
+    name: {type: String, required: true},
+    questions: [{type: ObjectId, ref: 'Question'}],
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true }
+
+});
+
+
+var questionPaperSubmissionSchema = new Schema({
+
+    paper: {type: ObjectId, ref: 'QuestionPaper', required: true},
+    session: {type: ObjectId, ref: 'EngagementSession'},
+    evaluator: {type: ObjectId, ref: 'User', required: true},
+    owner: {type: ObjectId, ref: 'User', required: true},
+    answers: [{type: ObjectId, ref: 'QuestionAnswer'}],
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true }
+
+});
+
+
+var QuestionPaper = mongoose.model('QuestionPaper', questionPaperSchema);
+var QuestionSection = mongoose.model('QuestionSection', questionSectionSchema);
+var Question = mongoose.model('Question', questionSchema);
+var QuestionAnswer = mongoose.model('QuestionAnswer', questionAnswerSchema);
+var QuestionPaperSubmission = mongoose.model('QuestionPaperSubmission', questionPaperSubmissionSchema);
+
+
