@@ -14,8 +14,9 @@ var caseSchema = new Schema({
     updated_at: {type:Date,default: Date.now,require:true},
     due_at: Date,
     active: Boolean,
-    status: {type: String, enum : ['new','open','progressing','parked','solved','closed'], default: 'new', required: true},
-    caseName: { type: String, required: true, unique: true},
+    status: {type: String, default: 'new', required: true},
+    ticketFlowActivate:{type: Boolean, default: false, required: true},
+    caseName: { type: String, required: true},
     description: { type: String, required: true, trim: true},
     submitter: {type: ObjectId,ref: 'User'},
     assignee: {type: ObjectId,ref: 'User'},
@@ -47,6 +48,7 @@ var caseConfigurationSchema = new Schema({
     threshold : { type: Number, required: true}
 });
 
+caseSchema.index({ company: 1, tenant: 1, caseName: 1}, { unique: true });
 caseConfigurationSchema.index({ company: 1, tenant: 1, configurationName: 1}, { unique: true });
 
 caseConfigurationSchema.index({configurationName:"text"});
