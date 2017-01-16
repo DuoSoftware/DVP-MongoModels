@@ -6,10 +6,10 @@ var customerSatisfactionSchema = new Schema({
 
    company: { type: Number, required: true },
    tenant: { type: Number, required: true },
-   requester: {type: ObjectId, ref: 'User', required: true},
+   requester: {type: ObjectId, ref: 'User'},
    submitter: {type: ObjectId,ref: 'ExternalUser'},
    method: {type: String, enum : ['ivr','sms','email','portal'], default: 'ivr', required: true},
-   ticket: {type: ObjectId, ref: 'Ticket', required: true},
+   ticket: {type: ObjectId, ref: 'Ticket'},
    satisfaction: {type: String, enum : ['good','bad','offered','refused'], default: 'offered', required: true},
    comment: String,
    created_at: {type:Date,default: Date.now,require:true},
@@ -18,5 +18,5 @@ var customerSatisfactionSchema = new Schema({
 });
 
 
-customerSatisfactionSchema.index({ company: 1, tenant: 1, ticket: 1}, { unique: true });
+//customerSatisfactionSchema.index({ company: 1, tenant: 1, ticket: 1}, { unique: true });
 module.exports.CustomerSatisfaction = mongoose.model('CustomerSatisfaction', customerSatisfactionSchema);
