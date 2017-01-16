@@ -24,7 +24,7 @@ var caseSchema = new Schema({
     tenant: { type: Number, required: true },
     collaborators: [{type: ObjectId,ref: 'User'}],
     attachments: [{type: ObjectId,ref: 'Attachment'}],
-    caseConfiguration: [{type: ObjectId,ref: 'CaseConfiguration'}],
+    caseConfiguration: {type: ObjectId,ref: 'CaseConfiguration'},
     related_tickets: [{type: ObjectId,ref: 'Ticket'}],
     sla: [{type: ObjectId,ref: 'SLA'}],
     comments: [{type: ObjectId,ref: 'Comment'}],
