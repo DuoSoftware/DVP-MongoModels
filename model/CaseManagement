@@ -38,7 +38,7 @@ var caseConfigurationSchema = new Schema({
     updated_at: {type:Date,default: Date.now,require:true},
     due_at: Date,
     active: Boolean,
-    configurationName: { type: String, required: true, unique: true},
+    configurationName: { type: String, required: true},
     description: { type: String, required: false, trim: true},
     submitter: {type: ObjectId,ref: 'User'},
     company: { type: Number, required: true },
@@ -47,18 +47,16 @@ var caseConfigurationSchema = new Schema({
     threshold : { type: Number, required: true}
 });
 
+caseConfigurationSchema.index({ company: 1, tenant: 1, configurationName: 1}, { unique: true });
 
 caseConfigurationSchema.index({configurationName:"text"});
-
-var CaseConfiguration = mongoose.model('CaseConfiguration', caseConfigurationSchema);
-module.exports.CaseConfiguration = CaseConfiguration;
-
-
 caseSchema.index({caseName:"text", description:"text"});
 
+var CaseConfiguration = mongoose.model('CaseConfiguration', caseConfigurationSchema);
 var Case = mongoose.model('Case', caseSchema);
-module.exports.Case = Case;
 var CaseEvent = mongoose.model('CaseEvent', eventSchema);
+module.exports.CaseConfiguration = CaseConfiguration;
+module.exports.Case = Case;
 module.exports.CaseEvent = CaseEvent;
 
 
