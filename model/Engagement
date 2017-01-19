@@ -19,7 +19,7 @@ var engagementSessionSchema = new Schema({
 
     _id: {type: String, require: true, unique: true},
     engagement_id: {type: String, require: true, unique: true},
-    channel: {type: String, enum: ['call', 'email', 'sms', 'facebook-post', 'facebook-chat', 'twitter','skype', 'api', 'web-widget', 'voicemail'],default: 'api'},
+    channel: {type: String, enum: ['call', 'chat','email', 'sms', 'facebook-post', 'facebook-chat', 'twitter','skype', 'api', 'web-widget', 'voicemail'],default: 'api'},
     channel_from: {type:String, require: true},
     channel_to: {type:String, require: true},
     notes: [noteSchema],
