@@ -50,7 +50,6 @@ var caseConfigurationSchema = new Schema({
 });
 
 caseSchema.index({ company: 1, tenant: 1, caseName: 1}, { unique: true });
-caseConfigurationSchema.index({ company: 1, tenant: 1, configurationName: 1}, { unique: true });
 
 caseConfigurationSchema.index({configurationName:"text"});
 caseSchema.index({caseName:"text", description:"text"});
