@@ -24,13 +24,7 @@ var engagementSessionSchema = new Schema({
     channel_to: {type:String, require: true},
     notes: [noteSchema],
     body: String,
-    contact: {
-        contact:String,
-        type:String,
-        display: String,
-        verified: Boolean,
-        raw:{}
-   },
+    contact: {},
     direction: String,
     has_profile: { type: Boolean, required: true },
     profile_id: String,

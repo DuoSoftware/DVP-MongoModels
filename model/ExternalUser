@@ -9,7 +9,8 @@ var contactSchema = new Schema({
     contact:String,
     type:String,
     display: String,
-    verified: Boolean
+    verified: Boolean,
+    raw: {}
 }, {_id: false});
 
 
