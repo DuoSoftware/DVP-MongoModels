@@ -12,6 +12,7 @@ var customerSatisfactionSchema = new Schema({
    ticket: {type: ObjectId, ref: 'Ticket'},
    satisfaction: {type: String, enum : ['good','bad','offered','refused'], default: 'offered', required: true},
    comment: String,
+   contact: String,
    created_at: {type:Date,default: Date.now,require:true},
    updated_at: {type:Date,default: Date.now,require:true}
 
