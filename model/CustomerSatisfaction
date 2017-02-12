@@ -8,7 +8,7 @@ var customerSatisfactionSchema = new Schema({
    tenant: { type: Number, required: true },
    requester: {type: ObjectId, ref: 'User'},
    submitter: {type: ObjectId,ref: 'ExternalUser'},
-   method: {type: String, enum : ['ivr','sms','email','portal'], default: 'ivr', required: true},
+   method: {type: String, enum : ['ivr','sms','email','portal','chat'], default: 'ivr', required: true},
    ticket: {type: ObjectId, ref: 'Ticket'},
    satisfaction: {type: String, enum : ['good','bad','offered','refused'], default: 'offered', required: true},
    comment: String,
