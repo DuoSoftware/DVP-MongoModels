@@ -14,7 +14,8 @@ var toDoSchema = new Schema({
     note: {type:String},
     owner: {type: ObjectId,ref: 'User'},
     company: { type: Number, required: true },
-    tenant: { type: Number, required: true }
+    tenant: { type: Number, required: true },
+messagetype:{type: String, enum : ['notice','message','todo','other'], default: 'todo', required: true}
 
 });
 
