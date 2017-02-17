@@ -21,7 +21,9 @@ var socialConnectorSchema = new Schema({
     		lastUpdate:{ type: Number, required: true },
     		ticketToPost:{type: Boolean, required: true},
     		subscribe: Boolean,
-    		status:{type: Boolean, required: true}
+    		status:{type: Boolean, required: true},
+    		profileID: {type: String, required: true},
+    		profileName: {type: String, required: true},
     	},
     	twitter: {
     		token: String,
