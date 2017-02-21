@@ -20,6 +20,7 @@ var formMasterSchema = new Schema({
     name: { type: String,  required: true},
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
+    isolated_tag: {type: String, required: false},
     fields: [dynamicFieldSchema]
 
 });
