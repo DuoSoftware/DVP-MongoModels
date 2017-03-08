@@ -47,6 +47,7 @@ var userSchema = new Schema({
     avatar: String,
     systemuser: Boolean,
     birthday: Date,
+    Active: Boolean,
     verified: Boolean,
     joined: Date,
     gender: String,
