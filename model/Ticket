@@ -100,4 +100,3 @@ module.exports.TicketEvent = TicketEvent;
 module.exports.FileSlot = FileSlot;
 module.exports.FileSlotArray = FileSlotArray;
 module.exports.TicketPrefix = TicketPrefix;
-module.exports.SecurityLevel = SecurityLevel;
