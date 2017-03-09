@@ -85,7 +85,8 @@ var userSchema = new Schema({
     client_scopes: [consoleScopeSchema],
     group:{type: ObjectId,ref: 'UserGroup'},
     created_at: Date,
-    updated_at: Date
+    updated_at: Date,
+    security_level: {type: Number}
 });
 
 

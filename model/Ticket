@@ -75,9 +75,20 @@ var ticketSchema = new Schema({
     comments: [{type: ObjectId,ref: 'Comment'}],
     events: [eventSchema],
     ticket_matrix: {type: ticketStaticsSchema,require: true},
-    slot_attachment : [{slot: {name: { type: String, required: true },fileType: {type: String, required: true}}, attachment: {type: ObjectId,ref: 'Attachment'}}]
+    slot_attachment : [{slot: {name: { type: String, required: true },fileType: {type: String, required: true}}, attachment: {type: ObjectId,ref: 'Attachment'}}],
+    security_mode : {type: String, enum : ['none','level','assignee','group'], default: 'none', required: true},
+    security_level: {type: Number}
+
 
 });
+
+var securityLevelSchema = new Schema({
+
+ company: { type: Number, required: true },
+ tenant: { type: Number, required: true },
+ level_id:{ type: Number, required: true,unique: true}
+});
+
 
 
 
@@ -88,6 +99,7 @@ var Ticket = mongoose.model('Ticket', ticketSchema);
 var FileSlot = mongoose.model('FileSlot', fileSlotSchema);
 var FileSlotArray = mongoose.model('FileSlotArray', fileSlotArraySchema);
 var TicketPrefix = mongoose.model('TicketPrefix', ticketPrefixSchema);
+var SecurityLevel = mongoose.model('SecurityLevel', securityLevelSchema);
 
 fileSlotSchema.index({ company: 1, tenant: 1, name: 1}, { unique: true });
 
@@ -96,3 +108,4 @@ module.exports.TicketEvent = TicketEvent;
 module.exports.FileSlot = FileSlot;
 module.exports.FileSlotArray = FileSlotArray;
 module.exports.TicketPrefix = TicketPrefix;
+module.exports.SecurityLevel = SecurityLevel;
