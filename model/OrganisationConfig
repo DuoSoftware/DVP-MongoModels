@@ -7,44 +7,20 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
-var consoleAccessLimitSchema = new Schema({
-    accessType: String,
-    accessLimit: Number,
-    currentAccess: [String]
+var organisationConfigSchema = new Schema({
+company: { type: Number, required: true },
+tenant: { type: Number, required: true },
+highPriority_match :{ type: Boolean, required: true },
+all_match :{ type: Boolean, required: true },
+created_at: Date,
+updated_at: Date,
+ _id : { tenant : 1, company: 1}
 });
 
-var resourceAccessLimitSchema = new Schema({
-    scopeName: String,
-    accessLimit: Number
+organisationConfigSchema.path('highPriority_match').set(function (v) {
+  this.all_match = !v;
+  return v;
 });
 
-var packageDetailSchema = new Schema({
-    veeryPackage: {type: ObjectId,ref: 'Package'},
-    buyDate: Date
-});
-
-var unitDetailSchema = new Schema({
-    veeryUnit: {type: ObjectId,ref: 'PackageUnit'},
-    units: Number,
-    buyDate: Date
-});
-
-var organisationSchema = new Schema({
-    ownerId:String,
-    companyName: {type: String, require: true, unique: true},
-    companyEnabled: Boolean,
-    id: Number,
-    tenant: Number,
-    packages: [String],
-    packageDetails: [packageDetailSchema],
-    unitDetails: [unitDetailSchema],
-    consoleAccessLimits: [consoleAccessLimitSchema],
-    resourceAccessLimits: [resourceAccessLimitSchema],
-    tenantRef:{type: ObjectId,ref: 'Tenant',  required: true},
-    ownerRef:{type: ObjectId,ref: 'User'},
-    created_at: Date,
-    updated_at: Date
-});
-
-var Organisation = mongoose.model('Organisation', organisationSchema);
-module.exports = Organisation;
+var OrganisationConfig = mongoose.model('OrganisationConfig', organisationConfigSchema);
+module.exports = OrganisationConfig;
