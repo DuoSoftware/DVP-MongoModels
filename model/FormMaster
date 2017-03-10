@@ -24,6 +24,15 @@ var formMasterSchema = new Schema({
 
 });
 
+var formIsolatedTagSchema = new Schema({
+
+    isolated_tag: { type: String,  required: true, unique: true},
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true },
+    dynamicForm: {type: ObjectId, ref: 'FormMaster', required: true},
+
+});
+
 
 var formSubmissionSchema = new Schema({
 
@@ -54,6 +63,9 @@ formMasterSchema.index({ company: 1, tenant: 1,name: 1}, { unique: true });
 
 var FormMaster = mongoose.model('FormMaster', formMasterSchema);
 module.exports.FormMaster = FormMaster;
+
+var FormIsolatedTag = mongoose.model('FormIsolatedTag', formIsolatedTagSchema);
+module.exports.FormIsolatedTag = FormIsolatedTag;
 
 var FormSubmission = mongoose.model('FormSubmission', formSubmissionSchema);
 module.exports.FormSubmission = FormSubmission;
