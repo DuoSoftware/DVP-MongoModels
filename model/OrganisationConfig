@@ -1,8 +1,3 @@
-/**
- * Created by a on 6/3/2016.
- */
-
-// grab the things we need
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
@@ -13,14 +8,14 @@ tenant: { type: Number, required: true },
 highPriority_match :{ type: Boolean, required: true },
 all_match :{ type: Boolean, required: true },
 created_at: Date,
-updated_at: Date,
- _id : { tenant : 1, company: 1}
+updated_at: Date
 });
 
 organisationConfigSchema.path('highPriority_match').set(function (v) {
-  this.all_match = !v;
-  return v;
+this.all_match = !v;
+return v;
 });
+organisationConfigSchema.index({ company: 1, tenant: 1}, { unique: true });
 
 var OrganisationConfig = mongoose.model('OrganisationConfig', organisationConfigSchema);
 module.exports = OrganisationConfig;
