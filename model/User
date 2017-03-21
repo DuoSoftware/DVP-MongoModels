@@ -48,6 +48,7 @@ var userSchema = new Schema({
     systemuser: Boolean,
     birthday: Date,
     Active: Boolean,
+    reset: Boolean,
     verified: Boolean,
     joined: Date,
     gender: String,
@@ -85,7 +86,8 @@ var userSchema = new Schema({
     client_scopes: [consoleScopeSchema],
     group:{type: ObjectId,ref: 'UserGroup'},
     created_at: Date,
-    updated_at: Date
+    updated_at: Date,
+    security_level: {type: Number}
 });
 
 

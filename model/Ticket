@@ -75,9 +75,13 @@ var ticketSchema = new Schema({
     comments: [{type: ObjectId,ref: 'Comment'}],
     events: [eventSchema],
     ticket_matrix: {type: ticketStaticsSchema,require: true},
-    slot_attachment : [{slot: {name: { type: String, required: true },fileType: {type: String, required: true}}, attachment: {type: ObjectId,ref: 'Attachment'}}]
+    slot_attachment : [{slot: {name: { type: String, required: true },fileType: {type: String, required: true}}, attachment: {type: ObjectId,ref: 'Attachment'}}],
+    security_level: {type: Number}
+
 
 });
+
+
 
 
 
