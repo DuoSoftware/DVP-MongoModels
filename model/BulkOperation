@@ -5,6 +5,7 @@ var bulkOperationSchema = new Schema({
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
     JobType: String,
+    JobReference: String,
     JobStatus: String,
     JobCount: Number,
     CommonData: {},
