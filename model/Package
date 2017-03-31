@@ -6,6 +6,12 @@ var consoleAccessLimitSchema = new Schema({
     accessLimit: Number
 });
 
+var spaceLimitSchema = new Schema({
+    spaceType: String,
+    spaceUnit: {type: String, enum : ['MB','GB', 'TB'], default: 'GB', required: true},
+    spaceLimit: Number
+});
+
 var scopeSchema = new Schema({
     scopeName: String,
     feature: String,
@@ -28,10 +34,11 @@ var packageSchema = new Schema({
     consoles: [String],
     veeryTask:[String],
     price: Number,
-    spaceLimit: Number
+    spaceLimit: [spaceLimitSchema]
 });
 
 var Package = mongoose.model('Package', packageSchema);
 module.exports = Package;
 module.exports.consoleAccessLimitSchema = consoleAccessLimitSchema;
 module.exports.resourceSchema = resourceSchema;
+module.exports.spaceLimitSchema = spaceLimitSchema;

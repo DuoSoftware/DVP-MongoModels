@@ -2,13 +2,15 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var consoleAccessLimitSchema = require('./Package').consoleAccessLimitSchema;
 var resourceSchema = require('./Package').resourceSchema;
+var spaceLimitSchema = require('./Package').spaceLimitSchema;
 
 var packageUnitSchema = new Schema({
     unitName: { type: String, required: true, unique: true },
-    unitType: {type: String, enum : ['space','account'], required: true},
+    unitType: {type: String, enum : ['spaceLimit','accessLimit'], required: true},
     description: String,
     consoleAccessLimit: consoleAccessLimitSchema,
     resources: [resourceSchema],
+    spaceLimit: [spaceLimitSchema],
     unitprice: Number
 });
 
