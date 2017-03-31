@@ -15,8 +15,7 @@ var consoleAccessLimitSchema = new Schema({
 
 var resourceAccessLimitSchema = new Schema({
     scopeName: String,
-    accessLimit: Number,
-    currentAccess: Number
+    accessLimit: Number
 });
 
 var packageDetailSchema = new Schema({
