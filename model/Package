@@ -27,7 +27,8 @@ var packageSchema = new Schema({
     resources: [resourceSchema],
     consoles: [String],
     veeryTask:[String],
-    price: Number
+    price: Number,
+    spaceLimit: Number
 });
 
 var Package = mongoose.model('Package', packageSchema);
