@@ -40,6 +40,7 @@ var organisationSchema = new Schema({
     unitDetails: [unitDetailSchema],
     consoleAccessLimits: [consoleAccessLimitSchema],
     resourceAccessLimits: [resourceAccessLimitSchema],
+    spaceLimit: Number,
     tenantRef:{type: ObjectId,ref: 'Tenant',  required: true},
     ownerRef:{type: ObjectId,ref: 'User'},
     created_at: Date,

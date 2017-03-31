@@ -5,7 +5,7 @@ var resourceSchema = require('./Package').resourceSchema;
 
 var packageUnitSchema = new Schema({
     unitName: { type: String, required: true, unique: true },
-    unitType: String,
+    unitType: {type: String, enum : ['space','account'], required: true},
     description: String,
     consoleAccessLimit: consoleAccessLimitSchema,
     resources: [resourceSchema],
