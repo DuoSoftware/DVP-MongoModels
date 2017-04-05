@@ -6,8 +6,7 @@ var codecSchema = new Schema({
     codec: { type: String, required: true, unique: true },
     type: {type: String, enum : ['audio','video'], default: 'audio', required: true},
     description: String,
-    active: Boolean,
-    price: Number
+    active: Boolean
 });
 
 var Codec = mongoose.model('Codec', codecSchema);

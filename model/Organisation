@@ -7,7 +7,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 var spaceLimitSchema = require('./Package').spaceLimitSchema;
-var codecSchema = require('./Codec').codecSchema;
 
 var consoleAccessLimitSchema = new Schema({
     accessType: String,
@@ -21,8 +20,8 @@ var resourceAccessLimitSchema = new Schema({
 });
 
 var codecAccessLimitSchema = new Schema({
-    codec: {type: ObjectId,ref: 'Codec'},
-    accessLimit: Number,
+    codec: String,
+    codecLimit: Number,
     currentAccess: Number
 });
 

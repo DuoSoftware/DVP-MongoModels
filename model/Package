@@ -1,13 +1,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
 
 var consoleAccessLimitSchema = new Schema({
     accessType: String,
-    accessLimit: Number
-});
-
-var codecAccessLimitSchema = new Schema({
-    codec: {type: ObjectId,ref: 'Codec'},
     accessLimit: Number
 });
 
@@ -36,10 +32,11 @@ var packageSchema = new Schema({
     description: String,
     consoleAccessLimit: [consoleAccessLimitSchema],
     resources: [resourceSchema],
-    codecAccessLimits: [codecAccessLimitSchema],
     consoles: [String],
     veeryTask:[String],
+    billingType: {type: String, enum : ['recurring','onetime'], default: 'recurring', required: true},
     price: Number,
+    setupFee: Number,
     spaceLimit: [spaceLimitSchema]
 });
 
