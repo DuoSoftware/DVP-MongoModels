@@ -6,6 +6,11 @@ var consoleAccessLimitSchema = new Schema({
     accessLimit: Number
 });
 
+var codecAccessLimitSchema = new Schema({
+    codec: {type: ObjectId,ref: 'Codec'},
+    accessLimit: Number
+});
+
 var spaceLimitSchema = new Schema({
     spaceType: String,
     spaceUnit: {type: String, enum : ['MB','GB', 'TB'], default: 'GB', required: true},
@@ -31,6 +36,7 @@ var packageSchema = new Schema({
     description: String,
     consoleAccessLimit: [consoleAccessLimitSchema],
     resources: [resourceSchema],
+    codecAccessLimits: [codecAccessLimitSchema],
     consoles: [String],
     veeryTask:[String],
     price: Number,

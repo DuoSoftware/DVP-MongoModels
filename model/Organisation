@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 var spaceLimitSchema = require('./Package').spaceLimitSchema;
+var codecSchema = require('./Codec').codecSchema;
 
 var consoleAccessLimitSchema = new Schema({
     accessType: String,
@@ -17,6 +18,12 @@ var consoleAccessLimitSchema = new Schema({
 var resourceAccessLimitSchema = new Schema({
     scopeName: String,
     accessLimit: Number
+});
+
+var codecAccessLimitSchema = new Schema({
+    codec: {type: ObjectId,ref: 'Codec'},
+    accessLimit: Number,
+    currentAccess: Number
 });
 
 var packageDetailSchema = new Schema({
@@ -30,6 +37,7 @@ var unitDetailSchema = new Schema({
     buyDate: Date
 });
 
+
 var organisationSchema = new Schema({
     ownerId:String,
     companyName: {type: String, require: true, unique: true},
@@ -41,6 +49,7 @@ var organisationSchema = new Schema({
     unitDetails: [unitDetailSchema],
     consoleAccessLimits: [consoleAccessLimitSchema],
     resourceAccessLimits: [resourceAccessLimitSchema],
+    codecAccessLimits: [codecAccessLimitSchema],
     spaceLimit: [spaceLimitSchema],
     tenantRef:{type: ObjectId,ref: 'Tenant',  required: true},
     ownerRef:{type: ObjectId,ref: 'User'},
