@@ -87,7 +87,8 @@ var userSchema = new Schema({
     group:{type: ObjectId,ref: 'UserGroup'},
     created_at: Date,
     updated_at: Date,
-    security_level: {type: Number}
+    security_level: {type: Number},
+    multi_login: {type: Boolean, require: true, default: false}
 });
 
 
