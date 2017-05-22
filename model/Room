@@ -29,14 +29,14 @@ var messageSchema = new Schema({
     upload: String,
     owner:  {type: ObjectId, ref: 'User', require:true},
     room: {type: ObjectId, ref: 'Room', require:true },
-     uuid: { type: String, required: true, unique: true }
+    uuid: { type: String, required: true, unique: true }
 
 });
 
 
 var personalMessageSchema = new Schema({
 
-    type: {type: String, enum : ['text','file','link','image'], default: 'text', required: true},
+    type: {type: String, enum : ['text','file','link','image', 'accept', 'end', 'ticket'], default: 'text', required: true},
     created_at: {type:Date,default: Date.now,require:true},
     updated_at: {type:Date,default: Date.now,require:true},
     status: {type: String, enum : ['pending','delivered','seen','discarded'], default: 'text', required: true},
