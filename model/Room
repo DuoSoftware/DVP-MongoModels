@@ -36,7 +36,7 @@ var messageSchema = new Schema({
 
 var personalMessageSchema = new Schema({
 
-    type: {type: String, enum : ['text','file','link','image', 'accept', 'end', 'ticket'], default: 'text', required: true},
+    type: {type: String, enum : ['text','file','link','image', 'accept', 'end', 'ticket', 'tag'], default: 'text', required: true},
     created_at: {type:Date,default: Date.now,require:true},
     updated_at: {type:Date,default: Date.now,require:true},
     status: {type: String, enum : ['pending','delivered','seen','discarded'], default: 'text', required: true},
