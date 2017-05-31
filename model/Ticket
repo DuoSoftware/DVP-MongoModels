@@ -38,6 +38,7 @@ var ticketPrefixSchema = new Schema({
 });
 
 
+
 var ticketSchema = new Schema({
 
     created_at: {type:Date,default: Date.now,require:true},
@@ -82,7 +83,16 @@ var ticketSchema = new Schema({
 });
 
 
+var ticketArchiveSchema = new Schema({
 
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true },
+    tid: {type: Number, required: true},
+    reference: { type: String, required: true, unique: true},
+    created_at: {type:Date,default: Date.now,require:true},
+    ticket: {type: ticketSchema}
+
+});
 
 
 ticketSchema.index({subject:"text", description:"text"});
@@ -92,11 +102,16 @@ var Ticket = mongoose.model('Ticket', ticketSchema);
 var FileSlot = mongoose.model('FileSlot', fileSlotSchema);
 var FileSlotArray = mongoose.model('FileSlotArray', fileSlotArraySchema);
 var TicketPrefix = mongoose.model('TicketPrefix', ticketPrefixSchema);
+var TicketArchive = mongoose.model('TicketArchive', ticketArchiveSchema);
 
 fileSlotSchema.index({ company: 1, tenant: 1, name: 1}, { unique: true });
+
+
+
 
 module.exports.Ticket = Ticket;
 module.exports.TicketEvent = TicketEvent;
 module.exports.FileSlot = FileSlot;
 module.exports.FileSlotArray = FileSlotArray;
 module.exports.TicketPrefix = TicketPrefix;
+module.exports.TicketArchive = TicketArchive;
