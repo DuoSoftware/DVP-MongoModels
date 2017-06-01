@@ -36,6 +36,11 @@ var unitDetailSchema = new Schema({
     buyDate: Date
 });
 
+var timeZoneSchema = new Schema({
+    tz: String,
+    utcOffset: String
+});
+
 
 var organisationSchema = new Schema({
     ownerId:String,
@@ -53,7 +58,8 @@ var organisationSchema = new Schema({
     tenantRef:{type: ObjectId,ref: 'Tenant',  required: true},
     ownerRef:{type: ObjectId,ref: 'User'},
     created_at: Date,
-    updated_at: Date
+    updated_at: Date,
+    timeZone: timeZoneSchema
 });
 
 var Organisation = mongoose.model('Organisation', organisationSchema);

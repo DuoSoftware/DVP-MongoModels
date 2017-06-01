@@ -9,7 +9,7 @@ var consoleAccessLimitSchema = new Schema({
 
 var spaceLimitSchema = new Schema({
     spaceType: String,
-    spaceUnit: {type: String, enum : ['MB','GB', 'TB'], default: 'GB', required: true},
+    spaceUnit: {type: String, enum : ['MB','GB', 'TB', 'DAYS'], default: 'GB', required: true},
     spaceLimit: Number
 });
 
