@@ -59,7 +59,8 @@ var organisationSchema = new Schema({
     ownerRef:{type: ObjectId,ref: 'User'},
     created_at: Date,
     updated_at: Date,
-    timeZone: timeZoneSchema
+    timeZone: timeZoneSchema,
+    languages:[type: String, unique: true]
 });
 
 var Organisation = mongoose.model('Organisation', organisationSchema);
