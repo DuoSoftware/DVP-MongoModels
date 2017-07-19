@@ -42,6 +42,7 @@ var externalUserSchema = new Schema({
     linkedin: String,
     googleplus: String,
     skype: String,
+    thirdpartyreference: String,
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
     contacts: [contactSchema],
