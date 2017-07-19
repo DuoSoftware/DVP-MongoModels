@@ -60,7 +60,7 @@ var organisationSchema = new Schema({
     created_at: Date,
     updated_at: Date,
     timeZone: timeZoneSchema,
-    languages:[type: String, unique: true]
+    languages:[{type: String, unique: true}]
 });
 
 var Organisation = mongoose.model('Organisation', organisationSchema);
