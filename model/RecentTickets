@@ -13,6 +13,21 @@ var recentTicket = new Schema({
 });
 
 
+var recentUserTickets = new Schema({
+
+    user: {type: ObjectId,ref: 'User', required: true},
+    created_at: {type:Date,default: Date.now, require:true},
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true },
+    tickets: {type: ObjectId,ref: 'Ticket', required: true},
+    operation: {type: String, required: true},
+
+});
+
 
 var RecentTicket = mongoose.model('RecentTicket', recentTicket);
 module.exports.RecentTicket = RecentTicket;
+
+
+var RecentUserTickets = mongoose.model('RecentUserTickets', recentUserTickets);
+module.exports.RecentUserTickets = RecentUserTickets;
