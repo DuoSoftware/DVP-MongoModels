@@ -11,7 +11,7 @@ var statusNodeSchema = new Schema({
     name: {type: String, required: true},
     description: { type: String, trim: true},
     node_type: {type: String, enum : ['system','custom'], default: 'system', required: true},
-    category:{type: String, enum : ['NEW','INPROGRESS','DONE'], default: 'INPROGRESS', required: true}
+    category:{type: String, enum : ['TODO','INPROGRESS','DONE'], default: 'INPROGRESS', required: true}
 });
 
 statusNodeSchema.index({ company: 1, tenant: 1, status_node: 1}, { unique: true });
