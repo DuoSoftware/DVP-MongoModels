@@ -1,0 +1,15 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var contactSchema = new Schema({
+    company: { type: Number, require:true},
+            tenant: { type: Number, require:true},
+            name: { type: String, require: true},
+            contact: { type: String, require: true},
+            type : { type: String, require: true},
+    created_at: Date,
+    updated_at: Date
+});
+
+var Contact = mongoose.model('Contact', contactSchema);
+module.exports = Contact;
