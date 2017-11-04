@@ -1,6 +1,6 @@
 {
   "name": "dvp-mongomodels",
-  "version": "4.8.38",
+  "version": "4.9.0",
   "description": "mongodb models",
   "main": "index.js",
   "scripts": {
