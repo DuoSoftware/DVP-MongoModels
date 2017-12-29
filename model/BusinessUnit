@@ -16,5 +16,5 @@ var businessUnitSchema = new Schema({
 
 
 
-var AccessToken = mongoose.model('BusinessUnit', businessUnitSchema);
+var BusinessUnit = mongoose.model('BusinessUnit', businessUnitSchema);
 module.exports.BusinessUnit = BusinessUnit;
