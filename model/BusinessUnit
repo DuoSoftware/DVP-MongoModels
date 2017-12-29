@@ -5,7 +5,7 @@ var businessUnitSchema = new Schema({
 
     owner:{type: ObjectId,ref: 'User'},
     unitName:{ type: String, required: true, unique: true  },
-    Description:{ type: String},
+    description:{ type: String},
     created_at: {type:Date,default: Date.now,require:true},
     company: { type: Number, required: true },
     tenant: { type: Number, required: true }
