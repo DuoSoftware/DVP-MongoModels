@@ -11,7 +11,7 @@ var userGroupSchema = new Schema({
     users: [{type: ObjectId,ref: 'User'}],
     supervisors: [{type: ObjectId,ref: 'User'}],
     lead:{type: ObjectId,ref: 'User'},
-    businessUnit:{type: ObjectId,ref: 'BusinessUnit'}
+    businessUnit:{type: String,ref: 'BusinessUnit'}
 
 
 });
