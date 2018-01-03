@@ -77,8 +77,8 @@ var ticketSchema = new Schema({
     events: [eventSchema],
     ticket_matrix: {type: ticketStaticsSchema,require: true},
     slot_attachment : [{slot: {name: { type: String, required: true },fileType: {type: String, required: true}}, attachment: {type: ObjectId,ref: 'Attachment'}}],
-    security_level: {type: Number}
-
+    security_level: {type: Number},
+    businessUnit: {type: String,ref: 'BusinessUnit'}
 
 });
 
