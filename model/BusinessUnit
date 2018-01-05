@@ -9,7 +9,8 @@ var businessUnitSchema = new Schema({
     description:{ type: String},
     created_at: {type:Date,default: Date.now,require:true},
     company: { type: Number, required: true },
-    tenant: { type: Number, required: true }
+    tenant: { type: Number, required: true },
+    heads:[{type: ObjectId,ref: 'User'}]
 
 },{ _id : false });
 
