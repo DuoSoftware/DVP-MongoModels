@@ -12,7 +12,7 @@ var businessUnitSchema = new Schema({
     tenant: { type: Number, required: true },
     heads:[{type: ObjectId,ref: 'User'}]
 
-},{ _id : false });
+});
 
 
 
