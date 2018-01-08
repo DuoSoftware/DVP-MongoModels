@@ -120,4 +120,7 @@ userSchema.methods.comparePassword = function(password, done) {
 
 var User = mongoose.model('User', userSchema);
 module.exports = User;
+module.exports.userSchema = userSchema;
+module.exports.scopeSchema = scopeSchema;
+module.exports.consoleScopeSchema = consoleScopeSchema;
 
