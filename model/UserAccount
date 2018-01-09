@@ -6,6 +6,8 @@ var ObjectId = Schema.ObjectId;
 var User = require('./User')
 var scopeSchema = require('./User').scopeSchema;
 var consoleScopeSchema = require('./User').consoleScopeSchema;
+var contactSchema = require('./User').contactSchema;
+
 
 
 var userAccountSchema = new Schema({
@@ -16,6 +18,7 @@ var userAccountSchema = new Schema({
     resource_id: { type: String, unique: true, sparse: true },
     user: {type: ObjectId,ref: 'User',required: true  },
     organization: {type: Number,ref: 'Organisation',required: true  },
+    veeryaccount: contactSchema,
     //company: { type: Number, required: true },
     //tenant: { type: Number, required: true },
     user_meta: {},
