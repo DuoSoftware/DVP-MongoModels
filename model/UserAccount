@@ -17,7 +17,7 @@ var userAccountSchema = new Schema({
     joined: Date,
     resource_id: { type: String, unique: true, sparse: true },
     user: {type: ObjectId,ref: 'User',required: true  },
-    organization: {type: Number,ref: 'Organisation',required: true  },
+    organization: {type: ObjectId,ref: 'Organisation',required: true  },
     veeryaccount: contactSchema,
     //company: { type: Number, required: true },
     //tenant: { type: Number, required: true },
