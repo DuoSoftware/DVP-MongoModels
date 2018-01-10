@@ -90,6 +90,7 @@ var userSchema = new Schema({
     updated_at: Date,
     security_level: {type: Number},
     multi_login: {type: Boolean, require: true, default: false},
+    allow_invitation: {type: Boolean, require: true, default: true},
     allowed_file_categories:[{type: String}],
     auth_mechanism: {type: String, enum : ['facetone','ad','oauth'], default: 'facetone', required: true}
 });
