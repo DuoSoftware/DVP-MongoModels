@@ -76,6 +76,7 @@ var userSchema = new Schema({
     linkedin: contactSchema,
     github: contactSchema,
     googleplus: contactSchema,
+    allowoutbound: Boolean,
     resourceid: { type: String, unique: true, sparse: true },
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
