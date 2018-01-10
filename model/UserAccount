@@ -34,7 +34,7 @@ var userAccountSchema = new Schema({
 
 
 
-
+userAccountSchema.index({ company: 1, tenant: 1,user: 1}, { unique: true });
 var UserAccount = mongoose.model('UserAccount', userAccountSchema);
 module.exports = UserAccount;
 

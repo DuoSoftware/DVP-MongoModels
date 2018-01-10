@@ -17,6 +17,6 @@ var userInvitationSchema = new Schema({
 });
 
 
-
+userInvitationSchema.index({ company: 1, tenant: 1,to: 1}, { unique: true });
 var UserInvitation = mongoose.model('UserInvitation', userInvitationSchema);
 module.exports.UserInvitation = UserInvitation;
