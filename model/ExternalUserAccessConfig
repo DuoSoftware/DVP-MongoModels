@@ -22,6 +22,7 @@ var externalUserAccessibleFieldSchema = new Schema({
     ssn:  accessEnableSchema,
     password: accessEnableSchema,
     primary_contacts: accessEnableSchema,
+    secondary_contacts: accessEnableSchema,
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
     contacts: accessEnableSchema,
