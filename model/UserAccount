@@ -31,6 +31,7 @@ var userAccountSchema = new Schema({
     created_at: Date,
     updated_at: Date,
     multi_login: {type: Boolean, require: true, default: false},
+    identity_account_id:{ type: String }
 
 });
 
