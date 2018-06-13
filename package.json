@@ -1,6 +1,6 @@
 {
   "name": "dvp-mongomodels",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "mongodb models",
   "main": "index.js",
   "scripts": {
@@ -20,6 +20,7 @@
     "bcryptjs": "^2.3.0",
     "config": "^1.21.0",
     "mongoose": "4.6.4",
-    "mongoose-text-search": "0.0.2"
+    "mongoose-text-search": "0.0.2",
+    "mongoose-unique-validator": "^2.0.1"
   }
 }
