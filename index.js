@@ -34,12 +34,25 @@ if(util.isArray(mongoip)){
 }
 
 console.log(connectionstring);
-mongoose.connect(connectionstring,{server:{auto_reconnect:true}});
+var options ={
+
+    server:{
+
+        auto_reconnect:true,
+        reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
+        reconnectInterval: 500, // Reconnect every 500ms
+
+    }
+
+
+
+}
+mongoose.connect(connectionstring,/*{server:{auto_reconnect:true}}*/options);
 
 
 mongoose.connection.on('error', function (err) {
     console.error( new Error(err));
-    mongoose.disconnect();
+    //mongoose.disconnect();
 
 });
 
@@ -49,8 +62,8 @@ mongoose.connection.on('opening', function() {
 
 
 mongoose.connection.on('disconnected', function() {
-    console.error( new Error('Could not connect to database'));
-    mongoose.connect(connectionstring,{server:{auto_reconnect:true}});
+    console.error( new Error('Could not connect to mongo database'));
+    //mongoose.connect(connectionstring,{server:{auto_reconnect:true}});
 });
 
 mongoose.connection.once('open', function() {
@@ -63,6 +76,10 @@ mongoose.connection.on('reconnected', function () {
     console.log('MongoDB reconnected!');
 });
 
+
+mongoose.connection.on('reconnectFailed', function () {
+    console.log('MongoDB reconnect failed!');
+});
 
 
 process.on('SIGINT', function() {
