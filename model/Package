@@ -37,7 +37,8 @@ var packageSchema = new Schema({
     billingType: {type: String, enum : ['recurring','onetime'], default: 'recurring', required: true},
     price: Number,
     setupFee: Number,
-    spaceLimit: [spaceLimitSchema]
+    spaceLimit: [spaceLimitSchema],
+    diginTemplates: [Number]
 });
 
 var Package = mongoose.model('Package', packageSchema);
