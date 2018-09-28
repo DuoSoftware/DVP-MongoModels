@@ -8,7 +8,7 @@ var userGroupSchema = new Schema({
     name: { type: String, required: true},
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
-    users: [{type: ObjectId,ref: 'User'}],
+    users: [{type: ObjectId,ref: 'UserAccount'}],
     supervisors: [{type: ObjectId,ref: 'User'}],
     lead:{type: ObjectId,ref: 'User'},
     businessUnit:{type: String,ref: 'BusinessUnit'}
