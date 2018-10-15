@@ -38,7 +38,7 @@ var packageSchema = new Schema({
     price: Number,
     setupFee: Number,
     spaceLimit: [spaceLimitSchema],
-    sharedResources: Object
+    sharedResources: {}
 });
 
 var Package = mongoose.model('Package', packageSchema);
