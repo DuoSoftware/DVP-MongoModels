@@ -46,6 +46,7 @@ var externalUserSchema = new Schema({
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
     contacts: [contactSchema],
+    api_contacts: [contactSchema],
     tags: [String],
     custom_fields: [{field:{type:String, require: true},value:{},_id: false}],
     form_submission: {type: ObjectId,ref: 'FormSubmission'},
