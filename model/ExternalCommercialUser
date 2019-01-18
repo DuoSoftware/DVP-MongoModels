@@ -54,6 +54,6 @@ externalCommercialUserSchema.plugin(uniqueValidator);
 externalCommercialUserSchema.index({firstname:"text", lastname:"text", phone:"text", email:"text"});
 externalCommercialUserSchema.index({"contacts.type" : 1,"contacts.contact" : 1});
 //fileSlotSchema.index({ company: 1, tenant: 1, ssn: 1, phone: 1, email: 1}, { unique: true });
-var ExternalUser = mongoose.model('ExternalCommercialUser', externalCommercialUserSchema);
+var ExternalCommercialUser = mongoose.model('ExternalCommercialUser', externalCommercialUserSchema);
 module.exports = ExternalCommercialUser;
 
