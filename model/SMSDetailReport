@@ -1,0 +1,19 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+
+var smsDetailReportSchema = new Schema({
+
+    uuid: {type: String, require: true, unique: true},
+    message_id: {type: String, require: true},
+    source_addr: {type: String, require: true},
+    destination_addr: {type: String, require: true},
+    message: String,
+    status: {type: String, enum : ['send','delivered','failed'], default: 'send', required: true},
+    created_at: {type:Date,default: Date.now,require:true},
+    updated_at: {type:Date,default: Date.now,require:true},
+
+});
+
+var smsDetailReportSchema = mongoose.model('SMSDetailReport', smsDetailReportSchema);
+module.exports.SMSDetailReport = SMSDetailReport;
