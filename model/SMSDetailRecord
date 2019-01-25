@@ -2,10 +2,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
-var smsDetailReportSchema = new Schema({
+var smsDetailRecordSchema = new Schema({
 
-    uuid: {type: String, require: true, unique: true},
-    message_id: {type: String, require: true},
+    _id: {type: String, require: true, unique: true},
+    message_id: String,
     source_addr: {type: String, require: true},
     destination_addr: {type: String, require: true},
     message: String,
@@ -15,5 +15,5 @@ var smsDetailReportSchema = new Schema({
 
 });
 
-var smsDetailReportSchema = mongoose.model('SMSDetailReport', smsDetailReportSchema);
-module.exports.SMSDetailReport = SMSDetailReport;
+var smsDetailRecord = mongoose.model('SMSDetailRecord', smsDetailRecordSchema);
+module.exports.SMSDetailRecord = smsDetailRecord;
