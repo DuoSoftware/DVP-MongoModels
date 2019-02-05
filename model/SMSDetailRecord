@@ -5,6 +5,8 @@ var Schema = mongoose.Schema;
 var smsDetailRecordSchema = new Schema({
 
     _id: {type: String, require: true, unique: true},
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true },
     message_id: String,
     source_addr: {type: String, require: true},
     destination_addr: {type: String, require: true},
