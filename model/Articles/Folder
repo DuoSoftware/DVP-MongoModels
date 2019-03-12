@@ -11,9 +11,10 @@ var folderSchema = new Schema({
  businessUnit: {type: String,ref: 'BusinessUnit'},
  author: {type: ObjectId,ref: 'User'},
  description: { type: String, required: true, trim: true},
- articles: [type: ObjectId,ref: 'Article'],
+ articles: [{type: ObjectId,ref: 'Article'}],
  created_at: {type:Date,default: Date.now,require:true},
- updated_at: {type:Date,default: Date.now,require:true}
+ updated_at: {type:Date,default: Date.now,require:true},
+ allow_groups: [{type: ObjectId,ref: 'UserGroup'}]
 
 });
 

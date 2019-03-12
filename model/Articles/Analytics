@@ -14,5 +14,5 @@ var matrixSchema = new Schema({
 
 });
 
-var ArticleComment = mongoose.model('ArticleComment', commentSchema);
-module.exports.ArticleComment = ArticleComment;
+var ArticleAnalytics = mongoose.model('ArticleAnalytics', matrixSchema);
+module.exports.ArticleAnalytics = ArticleAnalytics;

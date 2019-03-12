@@ -8,6 +8,7 @@ var articleSchema = new Schema({
  company: { type: Number, required: true },
  tenant: { type: Number, required: true },
  title:{ type: String, required: true},
+ description: { type: String, required: true, trim: true},
  businessUnit: {type: String,ref: 'BusinessUnit'},
  author: {type: ObjectId,ref: 'User'},
  published: {type: Boolean, required: true},
@@ -16,10 +17,10 @@ var articleSchema = new Schema({
  search:{
         meta: String,
         keywords:[String]
-    }
+    },
  comments: [{type: ObjectId,ref: 'ArticleComment'}],
  votes: [{type: ObjectId,ref: 'ArticleVote'}],
- analytics: {type: ObjectId,ref: 'ArticleVote'},
+ analytics: {type: ObjectId,ref: 'ArticleAnalytics'},
  created_at: {type:Date,default: Date.now,require:true},
  updated_at: {type:Date,default: Date.now,require:true}
 

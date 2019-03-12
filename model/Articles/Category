@@ -10,9 +10,10 @@ var categorySchema = new Schema({
  businessUnit: {type: String,ref: 'BusinessUnit'},
  author: {type: ObjectId,ref: 'User'},
  description: { type: String, required: true, trim: true},
- folders: [type: String,ref: 'ArticleFolder',require:true],
+ folders: [{type: ObjectId,ref: 'ArticleFolder'}],
  created_at: {type:Date,default: Date.now,require:true},
- updated_at: {type:Date,default: Date.now,require:true}
+ updated_at: {type:Date,default: Date.now,require:true},
+ allow_business_units: [{type: String,ref: 'BusinessUnit'}]
 
 });
 
