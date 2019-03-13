@@ -14,6 +14,7 @@ var folderSchema = new Schema({
  articles: [{type: ObjectId,ref: 'Article'}],
  created_at: {type:Date,default: Date.now,require:true},
  updated_at: {type:Date,default: Date.now,require:true},
+ enabled: {type: Boolean, required: true, default: true},
  allow_groups: [{type: ObjectId,ref: 'UserGroup'}]
 
 });

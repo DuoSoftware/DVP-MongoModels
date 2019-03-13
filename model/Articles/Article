@@ -12,6 +12,7 @@ var articleSchema = new Schema({
  businessUnit: {type: String,ref: 'BusinessUnit'},
  author: {type: ObjectId,ref: 'User'},
  published: {type: Boolean, required: true},
+ enabled: {type: Boolean, required: true, default: true},
  document: { type: String, required: true, trim: true},
  tags: [tagSchema],
  search:{
