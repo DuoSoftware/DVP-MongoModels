@@ -27,5 +27,6 @@ var articleSchema = new Schema({
 
 });
 
+articleSchema.index({"search.meta":"text", "search.keywords":"text"});
 var Article = mongoose.model('Article', articleSchema);
 module.exports.Article = Article;

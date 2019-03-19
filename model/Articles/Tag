@@ -6,7 +6,7 @@ var tagSchema = new Schema({
 
  company: { type: Number, required: true },
  tenant: { type: Number, required: true },
- tag: {type: String, required: true, unique: true},
+ tag: {type: String, required: true},
  created_at: {type:Date,default: Date.now,require:true}
 
 });
