@@ -24,6 +24,8 @@ var integrationSchema = new Schema({
     method: { type: String, enum: ['GET', 'POST','PUT', 'DELETE'], required: true },
     parameters: [ parameterSchema ],
     response_map: { type: responseMapSchema, required: false },
+    company: { type: Number, required: true },
+    tenant: { type: Number, required: true }
 });
 
 var actionSchema = new Schema({
