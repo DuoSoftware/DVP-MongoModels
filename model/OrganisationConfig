@@ -6,6 +6,7 @@ var organisationConfigSchema = new Schema({
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
     highPriority_match :{ type: Boolean, required: true },
+    abandonCallRedialTime :{type: Number},
     all_match :{ type: Boolean, required: true },
     active_crm: {type: String, enum : ['facetone','zoho'], default: 'facetone', required: true},
     created_at: Date,
