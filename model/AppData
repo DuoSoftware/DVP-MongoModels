@@ -17,6 +17,7 @@ var responseMapSchema = new Schema({
 
 var integrationSchema = new Schema({
     auth_type: {type: String, enum: ['Basic', 'Bearer'], required: false},
+    app: { type: ObjectId, ref: 'AppData', required: true },
     token: { type: String, required: false },
     username: { type: String, required: false },
     password: { type: String, required: false },
