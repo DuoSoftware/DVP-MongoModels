@@ -7,6 +7,7 @@ var abandonRedialConfigSchema = new Schema({
     tenant: { type: Number, required: true },
     redialTime :{type: Number},
     redialCampaignId :{type: Number},
+    abandonThreshold :{type: Number},
     created_at: Date,
     updated_at: Date
 });
