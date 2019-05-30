@@ -7,6 +7,7 @@ var mandrillWebhookSchema = new Schema({
  inbound_domain: {type: String, required: true},
  sub_account_id: {type: ObjectId,ref: 'Mandrill'},
  webhook_url: {type: String, required: true},
+ key: String,
  company: { type: Number, required: true },
  tenant: { type: Number, required: true },
  created_at: {type:Date,default: Date.now,require:true},
