@@ -8,6 +8,7 @@ var userInvitationSchema = new Schema({
     message: String,
     from: { type: String, required: true },
     to: { type: String, required: true },
+    role: { type: String, required: true },
     status: {type: String, enum: ['pending','accepted','rejected','canceled'],default: 'pending'},
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
