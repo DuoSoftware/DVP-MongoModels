@@ -12,6 +12,7 @@ var emailSchema = new Schema({
    ticket_type: {type: String, enum : ['question','complain','incident','action'], default: 'question'},
    ticket_tags: [String],
    ticket_priority: {type: String, enum : ['urgent','high','normal','low'], default: 'normal'},
+   active: Boolean,
    created_at: {type:Date,default: Date.now,require:true},
    updated_at: {type:Date,default: Date.now,require:true}
 
