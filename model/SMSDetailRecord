@@ -10,6 +10,7 @@ var smsDetailRecordSchema = new Schema({
     message_id: String,
     source_addr: {type: String, require: true},
     destination_addr: {type: String, require: true},
+    author: String,
     message: String,
     status: {type: String, enum : ['send','delivered','failed'], default: 'send', required: true},
     created_at: {type:Date,default: Date.now,require:true},
