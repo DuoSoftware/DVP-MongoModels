@@ -19,7 +19,7 @@
   "dependencies": {
     "bcryptjs": "^2.3.0",
     "config": "^1.21.0",
-    "mongoose": "4.6.4",
+    "mongoose": "5.7.7",
     "mongoose-text-search": "0.0.2",
     "mongoose-unique-validator": "^2.0.1"
   }
