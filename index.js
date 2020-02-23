@@ -8,7 +8,6 @@ var mongopass = config.Mongo.password;
 var mongoreplicaset = config.Mongo.replicaset;
 
 var mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
 var connectionstring = '';
 mongoip = mongoip.split(',');
 
@@ -42,33 +41,33 @@ var options = {
 
 mongoose.connect(connectionstring,/*{server:{auto_reconnect:true}}*/options);
 
-mongoose.connection.once('error', function (err) {
+mongoose.connection.on('error', function (err) {
     console.error(new Error(err));
     //mongoose.disconnect();
 });
 
-mongoose.connection.once('opening', function () {
+mongoose.connection.on('opening', function () {
     console.log("reconnecting... %d", mongoose.connection.readyState);
 });
 
-mongoose.connection.once('disconnected', function () {
+mongoose.connection.on('disconnected', function () {
     console.error(new Error('Could not connect to mongo database'));
     //mongoose.connect(connectionstring,{server:{auto_reconnect:true}});
 });
 
-mongoose.connection.once('open', function () {
+mongoose.connection.on('open', function () {
     console.log("Connected to db");
 });
 
-mongoose.connection.once('reconnected', function () {
+mongoose.connection.on('reconnected', function () {
     console.log('MongoDB reconnected!');
 });
 
-mongoose.connection.once('reconnectFailed', function () {
+mongoose.connection.on('reconnectFailed', function () {
     console.log('MongoDB reconnect failed!');
 });
 
-process.once('SIGINT', function () {
+process.on('SIGINT', function () {
     mongoose.connection.close(function () {
         console.log('Mongoose default connection disconnected through app termination');
         process.exit(0);
