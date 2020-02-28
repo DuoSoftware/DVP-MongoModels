@@ -35,7 +35,7 @@ if (util.isArray(mongoip)) {
 console.log(connectionstring);
 var options = {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: false,
     useCreateIndex: true
 }
 
