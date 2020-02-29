@@ -35,11 +35,13 @@ if (util.isArray(mongoip)) {
 console.log(connectionstring);
 var options = {
     useNewUrlParser: true,
-    useUnifiedTopology: false,
+    useUnifiedTopology: true,
     useCreateIndex: true
 }
 
-mongoose.connect(connectionstring,/*{server:{auto_reconnect:true}}*/options);
+mongoose.connect(connectionstring,/*{server:{auto_reconnect:true}}*/options).catch(err => {
+    console.error(new Error(err));
+});
 
 mongoose.connection.on('error', function (err) {
     console.error(new Error(err));
