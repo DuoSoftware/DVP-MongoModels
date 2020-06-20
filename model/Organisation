@@ -14,6 +14,12 @@ var consoleAccessLimitSchema = new Schema({
     currentAccess: [String]
 });
 
+var concurrentAccessLimitSchema = new Schema({
+    accessType: String,
+    accessLimit: Number,
+    currentAccess: [String]
+});
+
 var resourceAccessLimitSchema = new Schema({
     scopeName: String,
     accessLimit: Number
@@ -52,6 +58,7 @@ var organisationSchema = new Schema({
     packageDetails: [packageDetailSchema],
     unitDetails: [unitDetailSchema],
     consoleAccessLimits: [consoleAccessLimitSchema],
+    concurrentAccessLimits: [concurrentAccessLimitSchema],
     resourceAccessLimits: [resourceAccessLimitSchema],
     codecAccessLimits: [codecAccessLimitSchema],
     spaceLimit: [spaceLimitSchema],
