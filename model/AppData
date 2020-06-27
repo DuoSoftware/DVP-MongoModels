@@ -33,7 +33,7 @@ var actionSchema = new Schema({
     name: { type: String, require: true },
     icon: { type: String, require: false },
     dynamic_form_id: { type: ObjectId, ref: 'FormMaster', required: false },
-    integration: { type: ObjectId,ref:Integration, required: true },
+    integration: { type: ObjectId,ref:'Integration', required: true },
 });
 
 var appSchema = new Schema({
