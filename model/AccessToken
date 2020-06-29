@@ -15,8 +15,8 @@ var accessTokenSchema = new Schema({
     type: {type: String, enum : ['client-credentials','password','jwt-bearer','code', 'token', 'refresh-token', 'oauth-google+', 'oauth-github', 'oauth-facebook', 'oauth-twitter', 'oauth-linkedin'], default: 'clientCredentials', required: true},
     expirationDate: { type: String, required: true },
     created_at: {type:Date,default: Date.now,require:true},
-    logged_out_at: Date
-
+    logged_out_at: Date,
+    console: String
 });
 
 
