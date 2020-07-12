@@ -16,7 +16,8 @@ var accessTokenSchema = new Schema({
     expirationDate: { type: String, required: true },
     created_at: {type:Date,default: Date.now,require:true},
     logged_out_at: Date,
-    console: String
+    console: String,
+    orgId: String
 });
 
 
