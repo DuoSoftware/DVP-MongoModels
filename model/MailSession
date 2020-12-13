@@ -15,7 +15,7 @@ var emailSessionSchema = new Schema({
    text: String,
    headers: {},
    subject: String,
-   to: String,
+   email: String,
    messageId: String,
    priority: String,
    from: [{address: String, name: String}],

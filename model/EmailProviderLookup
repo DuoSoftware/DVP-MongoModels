@@ -1,0 +1,19 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
+
+var emailProviderLookupSchema = new Schema({
+ inbound_domain: {type: String, required: true},
+ key: String,
+ company: { type: Number, required: true },
+ tenant: { type: Number, required: true },
+ created_at: {type:Date,default: Date.now,require:true},
+ updated_at: {type:Date,default: Date.now,require:true},
+ status:  { type: Boolean, required: true }
+});
+
+
+emailProviderLookupSchema.index({ inbound_domain: 1}, { unique: true });
+
+var EmailProviderLookup = mongoose.model('EmailProviderLookup', emailProviderLookupSchema);
+module.exports.EmailProviderLookup = EmailProviderLookup;
