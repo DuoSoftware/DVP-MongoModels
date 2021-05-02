@@ -187,6 +187,7 @@ mongoose.connection.on("opening", function () {
 
 mongoose.connection.on("disconnected", function () {
   console.error(new Error("Could not connect to mongo database"));
+  process.exit(exitCode);
   //mongoose.connect(connectionstring,{server:{auto_reconnect:true}});
 });
 
