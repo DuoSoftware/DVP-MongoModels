@@ -1,0 +1,13 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var analyticsdashboardSchema = new Schema({
+
+    dashId:{ type: Number, required: true,unique: true},
+    dashboardName: {type: String, required:true},
+    company:{ type: Number, required: true },
+    tenant:{ type: Number, required: true},
+});
+
+var Analyticsdashboard = mongoose.model('Analyticsdashboard', analyticsdashboardSchema);
+module.exports.Analyticsdashboard = Analyticsdashboard;
