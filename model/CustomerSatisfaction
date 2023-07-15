@@ -3,19 +3,28 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
 var customerSatisfactionSchema = new Schema({
-
-   company: { type: Number, required: true },
-   tenant: { type: Number, required: true },
-   requester: String,
-   submitter: {type: ObjectId,ref: 'ExternalUser'},
-   method: {type: String, enum : ['ivr','sms','email','portal','chat'], default: 'ivr', required: true},
-   ticket: {type: ObjectId, ref: 'Ticket'},
-   satisfaction: {type: String, enum : ['satisfied','dissatisfied'], default: 'offered', required: true},
-   comment: String,
-   contact: String,
-   created_at: {type:Date,default: Date.now,require:true},
-   updated_at: {type:Date,default: Date.now,require:true}
-
+  company: { type: Number, required: true },
+  tenant: { type: Number, required: true },
+  requester: String,
+  submitter: { type: ObjectId, ref: "ExternalUser" },
+  method: {
+    type: String,
+    enum: ["ivr", "sms", "email", "portal", "chat"],
+    default: "ivr",
+    required: true,
+  },
+  ticket: { type: ObjectId, ref: "Ticket" },
+  satisfaction: {
+    type: String,
+    enum: ["satisfied", "dissatisfied"],
+    default: "offered",
+    required: true,
+  },
+  comment: String,
+  contact: String,
+  queue: String,
+  created_at: { type: Date, default: Date.now, require: true },
+  updated_at: { type: Date, default: Date.now, require: true },
 });
 
 
