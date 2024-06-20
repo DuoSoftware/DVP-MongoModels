@@ -68,6 +68,7 @@ var userSchema = new Schema({
     ssn:  String,
     password: { type: String, select: false},
     password_updated_at: Date,
+    old_six_passwords: {type: [{ type: String }], select: false},
     phoneNumber: contactSchema,
     email: contactSchema,
     veeryaccount: contactSchema,
