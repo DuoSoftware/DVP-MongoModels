@@ -47,6 +47,12 @@ var timeZoneSchema = new Schema({
     utcOffset: String
 });
 
+var passwordPolicySchema = new Schema({
+    expirationDays: { type: Number, required: true },
+    historyCheck: { type: Boolean, required: true },
+    oldPasswordCount: { type: Number, required: true }
+});
+
 
 var organisationSchema = new Schema({
     ownerId:String,
@@ -67,7 +73,8 @@ var organisationSchema = new Schema({
     created_at: Date,
     updated_at: Date,
     timeZone: timeZoneSchema,
-    languages:[{type: String}]
+    languages:[{type: String}],
+    passwordPolicy: passwordPolicySchema
 });
 
 var Organisation = mongoose.model('Organisation', organisationSchema);
