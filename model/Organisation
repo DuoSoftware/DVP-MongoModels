@@ -50,7 +50,9 @@ var timeZoneSchema = new Schema({
 var passwordPolicySchema = new Schema({
     expirationDays: { type: Number, required: true },
     historyCheck: { type: Boolean, required: true },
-    oldPasswordCount: { type: Number, required: true }
+    oldPasswordCount: { type: Number, required: true },
+    failedLoginAttemptsCheck: { type: Boolean, required: true },
+    failedLoginAttemptsCounts: { type: Number, required: true }
 });
 
 
