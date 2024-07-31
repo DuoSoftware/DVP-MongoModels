@@ -11,6 +11,8 @@ var abandonRedialConfigSchema = new Schema({
     categoryId: {type:Number},
     abandonThreshold :{type: Number},
     businessUnits : {type: [String]},
+    sendSms: { type: Boolean, default: false },
+    smsTemplate: { type: String },
     created_at: Date,
     updated_at: Date
 });
