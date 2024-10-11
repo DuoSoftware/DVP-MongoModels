@@ -1,0 +1,63 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
+
+// Language-based playfile schema
+var PlayfileSchema = new Schema({
+    order:{type: Number}  , 
+    dtmf: { type: String, required: true },
+    playfiles:[
+        {
+            language: { type: String, required: true }, 
+            file: { type: String, required: true }
+        } 
+    ] 
+});
+
+// IVR Node Schema
+var IVRNodeSchema = new Schema({
+    name: { type: String, required: true },
+    action: { type: String, required: true },
+    loops: { type: Number, default: 1 },
+    playfiles: [PlayfileSchema],
+    allowedInputs: [
+        {
+            input: { type: String }
+        }
+    ],
+    invalidRetryCount: { type: Number, default: 0 },
+    wrongInput: {
+        next_node_id: { type: String, ref: 'IVRNode' }
+    },
+    noInput: {
+        next_node_id: { type: String, ref: 'IVRNode' },
+        playfiles: [PlayfileSchema]
+    },
+    maxDigits: { type: Number, default: 1 },
+    interruptAudioOnInput: { type: Boolean, default: false },
+    parent_id: { type: String, ref: 'IVRNode' },
+    children: [[
+        {
+            dtmf: { type: String }
+        }
+    ]]
+});
+
+// IVR Flow Schema
+var IVRFlowSchema = new Schema({
+    name: { type: String, required: true },
+    version: { type: String, required: true },
+    description: { type: String },
+    businessUnit: { type: Number, required: true },
+    tenant: { type: Number, required: true },
+    nodes: [{ type: ObjectId, ref: 'IVRNode' }],
+    created_at: { type: Date, default: Date.now, require: true },
+    updated_at: { type: Date, default: Date.now, require: true }
+});
+
+// Models
+var IVRNode = mongoose.model('IVRNode', IVRNodeSchema);
+var IVRFlow = mongoose.model('IVRFlow', IVRFlowSchema);
+
+module.exports.IVRFlow = IVRFlow;
+module.exports.IVRNode = IVRNode;
