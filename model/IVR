@@ -14,6 +14,21 @@ var PlayfileSchema = new Schema({
     ] 
 });
 
+// Condition-based Node Schema
+var IVRConditionNodeSchema = new Schema({
+    name: { type: String, required: true },
+    variable: { type: String, required: true },
+    variableType: { type: String, required: true },
+    conditions: [
+        {
+            condition: { type: String, required: true },
+            compare_with: Schema.Types.Mixed,
+            next_node_id: { type: String, ref: 'IVRNode', required: true }
+        }
+    ],
+    default_next_node: { type: String, ref: 'IVRNode' }
+});
+
 // IVR Node Schema
 var IVRNodeSchema = new Schema({
     name: { type: String, required: true },
@@ -58,6 +73,8 @@ var IVRFlowSchema = new Schema({
 // Models
 var IVRNode = mongoose.model('IVRNode', IVRNodeSchema);
 var IVRFlow = mongoose.model('IVRFlow', IVRFlowSchema);
+var IVRConditionNode = mongoose.model('ConditionNode', IVRConditionNodeSchema);
 
 module.exports.IVRFlow = IVRFlow;
 module.exports.IVRNode = IVRNode;
+module.exports.IVRConditionNode = IVRConditionNode;
