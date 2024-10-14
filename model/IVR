@@ -6,12 +6,8 @@ var ObjectId = Schema.ObjectId;
 var PlayfileSchema = new Schema({
     order:{type: Number}  , 
     dtmf: { type: String, required: true },
-    playfiles:[
-        {
-            language: { type: String, required: true }, 
-            file: { type: String, required: true }
-        } 
-    ] 
+    language: { type: String, required: true }, 
+    file: { type: String, required: true } 
 });
 
 // Condition-based Node Schema
