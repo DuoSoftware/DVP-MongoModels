@@ -17,16 +17,24 @@ var PlayfileSchema = new Schema({
 // Condition-based Node Schema
 var IVRConditionNodeSchema = new Schema({
     name: { type: String, required: true },
+
+    action: { type: String, required: true },
+    
     variable: { type: String, required: true },
+    
     variableType: { type: String, required: true },
+    
     conditions: [
         {
-            condition: { type: String, required: true },
+            condition: { type: String, required: true },  // e.g., '<=', '>=', '==', 'contains'
+            
             compare_with: Schema.Types.Mixed,
-            next_node_id: { type: String, ref: 'IVRNode', required: true }
+            
+            next_node_id: { type: String, ref: 'IVRNode', required: true }  // Node to go to when condition is met
         }
     ],
-    default_next_node: { type: String, ref: 'IVRNode' }
+
+    default_next_node: { type: String, ref: 'IVRNode' }  // Node to go to if no condition matches
 });
 
 // IVR Node Schema
