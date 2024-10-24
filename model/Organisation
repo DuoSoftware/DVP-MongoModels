@@ -76,7 +76,8 @@ var organisationSchema = new Schema({
     updated_at: Date,
     timeZone: timeZoneSchema,
     languages:[{type: String}],
-    passwordPolicy: passwordPolicySchema
+    passwordPolicy: passwordPolicySchema,
+    abandonThreshold: Number
 });
 
 var Organisation = mongoose.model('Organisation', organisationSchema);
