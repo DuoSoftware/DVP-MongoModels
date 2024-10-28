@@ -20,6 +20,7 @@ var userAccountSchema = new Schema({
     userref:{type: ObjectId,ref: 'User', required: true },
     veeryaccount: contactSchema,
     allowoutbound: Boolean,
+    allowHybrid: Boolean,
     allowed_file_categories:[{type: String}],
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
