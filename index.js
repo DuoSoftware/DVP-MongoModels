@@ -176,9 +176,14 @@ mongoose
     console.error(new Error(err));
   });
 
+// mongoose.connection.on("error", function (err) {
+//   console.error(new Error(err));
+//   //mongoose.disconnect();
+// });
 mongoose.connection.on("error", function (err) {
-  console.error(new Error(err));
-  //mongoose.disconnect();
+  //console.error(new Error(err));
+  console.error("Connection Event Error:", err.message);
+  process.exit(0);
 });
 
 mongoose.connection.on("opening", function () {
