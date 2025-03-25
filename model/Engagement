@@ -33,6 +33,7 @@ var engagementSessionSchema = new Schema({
     updated_at: {type:Date,default: Date.now,require:true},
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
+    tag: { type: String, required: true},
     call_type: { type: String }
 
 
