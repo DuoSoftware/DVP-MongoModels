@@ -67,6 +67,7 @@ var ticketSchema = new Schema({
     related_tickets: [{type: ObjectId,ref: 'Ticket'}],
     merged_tickets: [{type: ObjectId,ref: 'Ticket'}],
     engagement_session: {type: String, ref: 'EngagementSession'},
+    callrefid: {type: String,required: true},
     channel: {type: String, required: true},
     tags: [String],
     isolated_tags: [],
