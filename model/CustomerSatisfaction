@@ -14,7 +14,7 @@ var customerSatisfactionSchema = new Schema({
     required: true,
   },
   ticket: { type: ObjectId, ref: "Ticket" },
-  satisfaction: { type: String, required: true },
+  satisfaction: { type: String, default: "not-offered", required: true },
   comment: String,
   contact: String,
   queue: String,
