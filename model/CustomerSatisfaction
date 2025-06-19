@@ -18,6 +18,7 @@ var customerSatisfactionSchema = new Schema({
   comment: String,
   contact: String,
   queue: String,
+  language:{ type: String, default: "default" },
   created_at: { type: Date, default: Date.now, require: true },
   updated_at: { type: Date, default: Date.now, require: true },
 });
