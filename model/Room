@@ -47,7 +47,17 @@ var personalMessageSchema = new Schema({
     upload: String,
     from: {type: String, require: true},
     to: {type: String, require: true},
-    uuid: { type: String, required: true, unique: true }
+    direction :{ type: String,enum : ['inbound','outbound'],default: 'inbound'},
+    uuid: { type: String, required: true, unique: true },
+    jti: String,
+    agentId: String,
+    agentName: String,
+    channel: String | undefined,
+    wa_id: String | undefined,
+    externalUserId: String,
+    company: String | undefined,
+    tenant:String | undefined,
+    BusinessUnit:String| undefined
 
 });
 
