@@ -63,7 +63,7 @@ var personalMessageSchema = new Schema({
 });
 
 
-# roomSchema.index({ company: 1, tenant: 1, name: 1}, { unique: true });
+roomSchema.index({ company: 1, tenant: 1, name: 1}, { unique: true });
 module.exports.Room = mongoose.model('Room', roomSchema);
 module.exports.Message = mongoose.model('Message', messageSchema);
 module.exports.PersonalMessage = mongoose.model('PersonalMessage', personalMessageSchema);
