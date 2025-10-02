@@ -53,12 +53,12 @@ var personalMessageSchema = new Schema({
     jti: String,
     agentId: String,
     agentName: String,
-    channel: String | undefined,
-    wa_id: String | undefined,
+    channel: { type: String },
+    wa_id: { type: String },
     externalUserId: String,
-    company: String | undefined,
-    tenant:String | undefined,
-    BusinessUnit:String| undefined
+    company: { type: String },
+    tenant: { type: String },
+    BusinessUnit:{ type: String }
 
 });
 
