@@ -164,14 +164,14 @@ if (util.isArray(mongoip)) {
 }
 
 console.log(connectionstring);
-var options = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-};
+// var options = {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useCreateIndex: true,
+// };
 
 mongoose
-  .connect(connectionstring, /*{server:{auto_reconnect:true}}*/ options)
+  .connect(connectionstring)
   .catch((err) => {
     console.error(new Error(err));
   });
