@@ -91,7 +91,7 @@ var mongoose = require("mongoose");
 var connectionstring = "";
 mongoip = mongoip.split(",");
 
-if (util.isArray(mongoip)) {
+if (Array.isArray(mongoip)) {
   if (mongoip.length > 1) {
     mongoip.forEach(function (item) {
       connectionstring +=
@@ -164,14 +164,15 @@ if (util.isArray(mongoip)) {
 }
 
 console.log(connectionstring);
-var options = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-};
+// Mongoose 8 deprecated these options.
+// var options = {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useCreateIndex: true,
+// };
 
 mongoose
-  .connect(connectionstring, /*{server:{auto_reconnect:true}}*/ options)
+  .connect(connectionstring)
   .catch((err) => {
     console.error(new Error(err));
   });
@@ -208,13 +209,17 @@ mongoose.connection.on("reconnectFailed", function () {
   console.log("MongoDB reconnect failed!");
 });
 
-process.on("SIGINT", function () {
-  mongoose.connection.close(function () {
+process.on("SIGINT", async function () {
+  try {
+    await mongoose.connection.close();
     console.log(
       "Mongoose default connection disconnected through app termination"
     );
     process.exit(0);
-  });
+  } catch (err) {
+    console.error("Error closing Mongoose connection:", err);
+    process.exit(1);
+  }
 });
 
 module.exports.connection = mongoose.connection;
