@@ -34,6 +34,8 @@ var engagementSessionSchema = new Schema({
     company: { type: Number, required: true },
     tenant: { type: Number, required: true },
     tag: { type: String },
+    tagPath: { type: String },
+    tagId: { type: ObjectId, ref: 'TagMaster' },
     call_type: { type: String }
 
 
