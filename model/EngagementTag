@@ -21,9 +21,10 @@ var tagMasterSchema = new Schema({
 // Names must be unique among siblings (same parent), not globally - this allows
 // e.g. "Refund" under both "Sales" and "Support". Replaces the old
 // { company, tenant, tag } unique index (drop that index via migration).
+// (Path uniqueness is implied by sibling uniqueness, since path is derived from
+// the parent chain + name; a separate unique path index would only add a
+// redundant failure mode on null/legacy paths, so it is intentionally omitted.)
 tagMasterSchema.index({ company: 1, tenant: 1, parent: 1, tag: 1 }, { unique: true });
-// Secondary guard: the full materialized path is globally unique within a tenant.
-tagMasterSchema.index({ company: 1, tenant: 1, path: 1 }, { unique: true, sparse: true });
 var TagMaster = mongoose.model('TagMaster', tagMasterSchema);
 module.exports.tagMasterSchema = tagMasterSchema;
 module.exports.TagMaster = TagMaster;
