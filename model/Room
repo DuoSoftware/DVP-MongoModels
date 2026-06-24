@@ -58,7 +58,8 @@ var personalMessageSchema = new Schema({
     externalUserId: String,
     company: { type: String },
     tenant: { type: String },
-    BusinessUnit:{ type: String }
+    BusinessUnit:{ type: String },
+    name:{ type: String }
 
 });
 
