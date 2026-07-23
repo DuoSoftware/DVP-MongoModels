@@ -20,6 +20,7 @@ var externalUserSchema = new Schema({
     title: String,
     avatar: String,
     birthday: Date,
+    anniversary: Date,
     gender: String,
     address: {
         zipcode: String,
