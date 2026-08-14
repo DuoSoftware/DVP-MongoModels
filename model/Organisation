@@ -55,6 +55,19 @@ var passwordPolicySchema = new Schema({
     failedLoginAttemptsCounts: { type: Number, required: true }
 });
 
+var ticketSubjectSchema = new Schema({
+    name: { type: String, required: true, trim: true },
+    enabled: { type: Boolean, default: true }
+});
+
+//_id is disabled here because this is a single nested document, not an addressable list item
+var ticketSubjectConfigSchema = new Schema({
+    enabled: { type: Boolean, default: false },
+    apply_to_main: { type: Boolean, default: false },
+    apply_to_internal: { type: Boolean, default: false },
+    apply_to_sub: { type: Boolean, default: false }
+}, { _id: false });
+
 
 var organisationSchema = new Schema({
     ownerId:String,
@@ -77,7 +90,10 @@ var organisationSchema = new Schema({
     timeZone: timeZoneSchema,
     languages:[{type: String}],
     passwordPolicy: passwordPolicySchema,
-    abandonThreshold: Number
+    abandonThreshold: Number,
+    ticket_subjects: [ticketSubjectSchema],
+    //the default factory is required, without it mongoose never instantiates the nested doc and it reads back undefined
+    ticket_subjects_config: { type: ticketSubjectConfigSchema, default: function () { return {}; } }
 });
 
 var Organisation = mongoose.model('Organisation', organisationSchema);
