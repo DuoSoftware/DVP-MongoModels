@@ -4,7 +4,7 @@ module.exports = {
     port: "",
     dbname: "",
     password: "",
-    user: "facetone",
+    user: "",
     type: "mongodb+srv",
   },
 };
