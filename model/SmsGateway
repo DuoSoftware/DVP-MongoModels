@@ -1,0 +1,161 @@
+/**
+ * SmsGateway: one SMS gateway (SMPP binding or HTTP API) owned by a company:tenant.
+ * Used by DVP-SMPPClient (sending, admin API) and readable by other services.
+ *
+ * Secrets (smpp.password, http.token) are stored ENCRYPTED. The service that writes them (DVP-SMPPClient)
+ * encrypts them before saving, with its own key; this model never sees or needs that key. Never write a
+ * plain password or token through this model.
+ */
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var TYPES = ['smpp', 'http'];
+var BIND_MODES = ['transceiver', 'transmitter', 'receiver'];
+var HTTP_METHODS = ['GET', 'POST'];
+var BODY_TYPES = ['none', 'json', 'form'];
+var RECIPIENT_MODES = ['single', 'bulk'];
+// Only UCS2 is supported for now: the SMPP sender always encodes and splits text as UCS2.
+var DATA_CODINGS = [8];
+
+var smppSchema = new Schema({
+    localPort: Number,          // fixed local port the binding is opened from; unique across all gateways
+    localAddress: String,       // optional local IP to bind from
+    host: String,               // remote SMSC
+    port: Number,
+    system_id: String,
+    password: String,           // secret, encrypted
+    system_type: String,
+    address_range: String,
+    bind_mode: {type: String, enum: BIND_MODES, default: 'transceiver'},
+    maxTps: {type: Number, default: 20},
+    addr_ton: {type: Number, default: 1},
+    addr_npi: {type: Number, default: 1},
+    source_addr_ton: {type: Number, default: 1},
+    source_addr_npi: {type: Number, default: 1},
+    dest_addr_ton: {type: Number, default: 1},
+    dest_addr_npi: {type: Number, default: 1},
+    data_coding: {type: Number, enum: DATA_CODINGS, default: 8},
+    maxQueueAgeMinutes: Number  // how long a message may wait in the gateway's queue
+}, {_id: false});
+
+var httpSchema = new Schema({
+    url: String,                // template: {from} {to} {text} {token}
+    method: {type: String, enum: HTTP_METHODS, default: 'GET'},
+    headers: {type: Schema.Types.Mixed, default: {}},
+    bodyType: {type: String, enum: BODY_TYPES, default: 'none'},
+    bodyTemplate: String,
+    token: String,              // secret, encrypted
+    recipientMode: {type: String, enum: RECIPIENT_MODES, default: 'single'},
+    // optional, "94" or "+94": numbers are sent in one international form without "+" (0703366073 -> 94703366073)
+    countryCode: String,
+    success: {
+        statusCodes: {type: [Number], default: [200]},
+        pattern: String,
+        field: String,
+        value: String
+    }
+}, {_id: false});
+
+var smsGatewaySchema = new Schema({
+    company: {type: Number, required: true},
+    tenant: {type: Number, required: true},
+    name: {type: String, required: true, trim: true},
+    type: {type: String, enum: TYPES, required: true},
+    isDefault: {type: Boolean, default: false},
+    enabled: {type: Boolean, default: true},
+    description: String,
+    smpp: smppSchema,
+    http: httpSchema,
+    created_at: {type: Date, default: Date.now},
+    updated_at: {type: Date, default: Date.now}
+}, {collection: 'SmsGateway'});
+
+// one name per company, at most one default per company, a local port used by one SMPP gateway only
+smsGatewaySchema.index({company: 1, tenant: 1, name: 1}, {unique: true});
+smsGatewaySchema.index({company: 1, tenant: 1}, {unique: true, partialFilterExpression: {isDefault: true}});
+smsGatewaySchema.index({'smpp.localPort': 1}, {unique: true, partialFilterExpression: {type: 'smpp'}});
+
+function isBlank(v) {
+    return v === undefined || v === null || v === '';
+}
+
+function isPort(v) {
+    return typeof v === 'number' && v % 1 === 0 && v >= 1 && v <= 65535;
+}
+
+/**
+ * Per-type checks. Returns a list of problems, each naming the field, never its value.
+ */
+function validateGateway(gw) {
+    var problems = [];
+    gw = gw || {};
+
+    ['company', 'tenant', 'name', 'type'].forEach(function (f) {
+        if (isBlank(gw[f])) {
+            problems.push(f + ' is required');
+        }
+    });
+    if (!isBlank(gw.type) && TYPES.indexOf(gw.type) === -1) {
+        problems.push('type must be one of ' + TYPES.join(', '));
+    }
+
+    if (gw.type === 'smpp') {
+        var s = gw.smpp || {};
+        ['localPort', 'host', 'port', 'system_id', 'password'].forEach(function (f) {
+            if (isBlank(s[f])) {
+                problems.push('smpp.' + f + ' is required');
+            }
+        });
+        if (!isBlank(s.localPort) && !isPort(s.localPort)) {
+            problems.push('smpp.localPort must be a whole number between 1 and 65535');
+        }
+        if (!isBlank(s.port) && !isPort(s.port)) {
+            problems.push('smpp.port must be a whole number between 1 and 65535');
+        }
+        if (!isBlank(s.maxTps) && !(typeof s.maxTps === 'number' && s.maxTps >= 0)) {
+            problems.push('smpp.maxTps must be 0 or more');
+        }
+    }
+
+    if (gw.type === 'http') {
+        var h = gw.http || {};
+        if (isBlank(h.url)) {
+            problems.push('http.url is required');
+        }
+        if ((h.bodyType === 'json' || h.bodyType === 'form') && isBlank(h.bodyTemplate)) {
+            problems.push('http.bodyTemplate is required when http.bodyType is ' + h.bodyType);
+        }
+        if (h.success && !isBlank(h.success.pattern)) {
+            try {
+                new RegExp(h.success.pattern);
+            } catch (e) {
+                problems.push('http.success.pattern is not a valid regular expression');
+            }
+        }
+        if (h.success && !isBlank(h.success.field) && isBlank(h.success.value)) {
+            problems.push('http.success.value is required when http.success.field is set');
+        }
+        if (!isBlank(h.countryCode) && !/^\+?[1-9][0-9]{0,3}$/.test(String(h.countryCode).trim())) {
+            problems.push('http.countryCode must be a country code like "94" or "+94"');
+        }
+    }
+    return problems;
+}
+
+smsGatewaySchema.pre('validate', function (next) {
+    var problems = validateGateway(this.toObject());
+    if (problems.length > 0) {
+        return next(new Error('Invalid SMS gateway: ' + problems.join('; ')));
+    }
+    next();
+});
+
+smsGatewaySchema.pre('save', function (next) {
+    this.updated_at = Date.now();
+    next();
+});
+
+var SmsGateway = mongoose.models.SmsGateway || mongoose.model('SmsGateway', smsGatewaySchema);
+
+module.exports.SmsGateway = SmsGateway;
+module.exports.validateGateway = validateGateway;
